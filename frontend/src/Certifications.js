@@ -1,21 +1,29 @@
 import React, { Component } from 'react'
 
-class Certifications extends React.Component {
+class Certifications extends Component {
     constructor(props) {
         super(props);
         this.state = {
             exerciseName: '',
-            //exerciseBy: '',  autofill current user            
+            //exerciseBy: '',  autofill current user from session
             exerciseType: '', // options should be pull from db
             fieldApprove: '', // options should be pull from db
             fileApprove: '', // options should be pull from db
             artilleryApprove: '', // options should be pull from db
             exerciseManager: '', // options should be pull from db
-            trainerOfficerApprove: '' // options should be pull from db
+            trainerOfficerApprove: '', // options should be pull from db
+            cerRes: '',
+            fieldApproveOptions: []
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        fetch('/api/fieldApproveOptions?userId=1234567')
+            .then(response => response.json())
+            .then(state => this.setState(state), () => console.log("here"));
     }
 
     handleChange(event) {
@@ -37,63 +45,66 @@ class Certifications extends React.Component {
         let exerciseManager = encodeURIComponent(this.state.exerciseManager)
         let trainerOfficerApprove = encodeURIComponent(this.state.trainerOfficerApprove)
 
-        fetch(`/api/certifications?exerciseName=${exerciseName}&exerciseType=${exerciseType}
-        &fieldApprove=${fieldApprove}&fileApprove=${fileApprove}&artilleryApprove=${artilleryApprove}
-        &exerciseManager=${exerciseManager}&trainerOfficerApprove=${trainerOfficerApprove}`)
+        fetch(`/api/certifications?exerciseName=${exerciseName}&exerciseType=${exerciseType}` +
+            `&fieldApprove=${fieldApprove}&fileApprove=${fileApprove}&artilleryApprove=${artilleryApprove}` +
+            `&exerciseManager=${exerciseManager}&trainerOfficerApprove=${trainerOfficerApprove}` +
+            `&exerciseAuthorId=1234567`)
             .then(response => response.json())
             .then(state => this.setState(state));
     }
 
     render() {
+        let i = 0
         return (
             <div className="Certifications">
                 <header className="Certifications-header">
-                    {/* <img src={logo} className="StartScreen-logo" alt="logo"/>
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p> */}
                     <h1>Certifications</h1>
+
                     <br />
+
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="exerciseName">Exercise name: </label>
                         <input
                             name="exerciseName"
                             type="text"
                             value={this.state.exerciseName}
-                            onChange={this.handleChange}
-                        />
+                            onChange={this.handleChange} />
+
                         <br />
+
                         <label htmlFor="exerciseType">Exercise type: </label>
                         <input
                             name="exerciseType"
                             type="text"
                             value={this.state.exerciseType}
-                            onChange={this.handleChange}
-                        />
+                            onChange={this.handleChange} />
+
                         <br />
                         <label htmlFor="fieldApprove">Field approve: </label>
-                        <input
-                            name="fieldApprove"
-                            type="text"
-                            value={this.state.fieldApprove}
-                            onChange={this.handleChange}
-                        />
+                        <select id="fieldApproves" name="fieldApprove" defaultValue onChange={this.handleChange}>
+                            <option value="default" hidden></option>
+                            {this.state.fieldApproveOptions.map(option =>
+                                <option key={i++} value={option.id}>{option.rank} {option.firstName} {option.lastName}</option>)}
+                        </select>
+
                         <br />
+
                         <label htmlFor="fileApprove">File approve: </label>
                         <input
                             name="fileApprove"
                             type="text"
                             value={this.state.fileApprove}
-                            onChange={this.handleChange}
-                        />
+                            onChange={this.handleChange} />
+
                         <br />
+
                         <label htmlFor="artilleryApprove">Artillery approve: </label>
                         <input
                             name="artilleryApprove"
                             type="text"
                             value={this.state.artilleryApprove}
-                            onChange={this.handleChange}
-                        />
+                            onChange={this.handleChange} />
+
                         <br />
 
                         <label htmlFor="exerciseManager">Exercise manager: </label>
@@ -101,8 +112,8 @@ class Certifications extends React.Component {
                             name="exerciseManager"
                             type="text"
                             value={this.state.exerciseManager}
-                            onChange={this.handleChange}
-                        />
+                            onChange={this.handleChange} />
+
                         <br />
 
                         <label htmlFor="trainerOfficerApprove">Trainer officer approve: </label>
@@ -110,12 +121,15 @@ class Certifications extends React.Component {
                             name="trainerOfficerApprove"
                             type="text"
                             value={this.state.trainerOfficerApprove}
-                            onChange={this.handleChange}
-                        />
+                            onChange={this.handleChange} />
+
                         <br />
+
                         <button type="submit">Send</button>
                     </form>
-                    <h1>{this.state.regRes}</h1>
+
+                    <p><strong>{this.state.cerRes}</strong></p>
+                    <p><strong>{this.state.fieldApprove}</strong></p>
                 </header>
             </div>
         );

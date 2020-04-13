@@ -7,6 +7,8 @@ app.use(express.static('../frontend/public'))
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.get('/api/certifications', certifications)
+app.get('/api/certifications', certifications.certifications)
+
+app.get('/api/fieldApproveOptions', certifications.fieldApproveOptions)
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

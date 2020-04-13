@@ -1,11 +1,10 @@
-var MongoClient = require('mongodb').MongoClient
-var ObjectId = require('mongodb').ObjectID;
+var userName = 'yogev'
+var password = '1234'
 const PARAMS = {
-    SERVER_URL: "mongodb://127.0.0.1:27017/",
+    SERVER_URL: "mongodb+srv://" + userName + ":" + password + "@exercisefile-nav1h.gcp.mongodb.net/test?retryWrites=true&w=majority",
     DB: "exercideFileDB",
-    ID: "_id",
+    ID: "id",
     /*
-    WORKPLACES: "workplaces",
     CONSTRAINTS: "constraints",
     COMMONS: "commons",
     POSITIONS: "positions",
@@ -13,7 +12,9 @@ const PARAMS = {
     USER_ID: "userId",
     WORKPLACE_ID: "workplaceId",
     */
-    EXERCISES: "exercises",
+    USERS: "Users",
+    EXERCISES: "Exercises",
+    EXERCISAUTHORID: "exerciseAuthorId",
     EXERCISENAME: "exerciseName",
     EXERCIDETYPE: "exerciseType",
     FIELDAPPROVE: "fieldApprove",
