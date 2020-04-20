@@ -33,10 +33,10 @@ npm start
 Then, load http://localhost:3000/ in a browser to see the output.
 <br>
 ##### Concurrently (Node + React)
-Open terminal in root folder and run the following commands:
+Open terminal in root folder and run the following command:
 ```
 npm run dev
 ```
-Then, load http://localhost:5000/ in a browser to see the output of the server
+Then, load http://localhost:5000/ in a browser to see the server's output.
 <br>
-or, load http://localhost:3000/ in a browser to see the output of the client
+or, load http://localhost:3000/ in a browser to see the client's output. 
