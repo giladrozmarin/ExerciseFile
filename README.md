@@ -37,6 +37,4 @@ Open terminal in root folder and run the following command:
 ```
 npm run dev
 ```
-Then, load http://localhost:5000/ in a browser to see the server's output.
-<br>
-or, load http://localhost:3000/ in a browser to see the client's output. 
+Then, load http://localhost:3000/ in a browser to see the project's output. 
