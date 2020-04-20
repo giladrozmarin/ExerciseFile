@@ -30,7 +30,7 @@ function find(query, callback) {
 
         let dbo = db.db(DB_PARAMS.DB);
 
-        return dbo.collection(DB_PARAMS.USERS).find(query).toArray(function (err, dbRes) {
+        dbo.collection(DB_PARAMS.USERS).find(query).toArray(function (err, dbRes) {
             if (err)
                 throw err;
 
@@ -38,8 +38,6 @@ function find(query, callback) {
             db.close();
         });
     });
-
-    return retval;
 }
 
 module.exports.insertOne = insertOne;
