@@ -18,7 +18,6 @@ function certifications(req, res) {
         console.log(dbRes.result.ok);
         res.send({ cerRes: 'Certifications added successfully' });
     });
-
 }
 
 function fieldApproveOptions(req, res) {
@@ -30,7 +29,6 @@ function fieldApproveOptions(req, res) {
         console.log(dbRes);
         res.send({ fieldApproveOptions: dbRes, cerRes: 'file approve options fetched successfully' });
     });
-
 }
 
 module.exports.certifications = certifications;
