@@ -1,14 +1,15 @@
-const express = require('express')
-const app = express()
-const port = 5000
-var certifications = require('./certifications');
+const express = require('express');
+const app = express();
+const port = 5000;
 
-app.use(express.static('../frontend/public'))
+var certController = require('./certifications/certController');
 
-app.get('/', (req, res) => res.send('Hello World!'))
+//handling post requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/certifications', certifications.certifications)
+app.use(express.static('../frontend/build'));
 
-app.get('/api/fieldApproveOptions', certifications.fieldApproveOptions)
+app.use('/api/certifications', certController);
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

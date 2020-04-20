@@ -21,9 +21,14 @@ class Certifications extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/fieldApproveOptions?userId=1234567')
+        // parameters should be from current user
+        fetch('/api/certifications/fieldApproveOptions?userId=1234567&rank=Colonel&force=Moran')
             .then(response => response.json())
-            .then(state => this.setState(state), () => console.log("here"));
+            .then(state => this.setState(state), () => console.log("here"))
+            .catch((error) => {
+                console.error('Error:', error);
+                this.setState({ cerRes: 'Error' })
+            });
     }
 
     handleChange(event) {
@@ -36,8 +41,10 @@ class Certifications extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
+        /*
         let exerciseName = encodeURIComponent(this.state.exerciseName)
-        //let exerciseBy = ....
+        //let exerciseBy = autofill current user from session
         let exerciseType = encodeURIComponent(this.state.exerciseType)
         let fieldApprove = encodeURIComponent(this.state.fieldApprove)
         let fileApprove = encodeURIComponent(this.state.fileApprove)
@@ -51,6 +58,34 @@ class Certifications extends Component {
             `&exerciseAuthorId=1234567`)
             .then(response => response.json())
             .then(state => this.setState(state));
+        */
+
+        let data = {
+            exerciseName: encodeURIComponent(this.state.exerciseName),
+            exerciseBy: '1234567', // autofill current user from session
+            exerciseType: encodeURIComponent(this.state.exerciseType),
+            fieldApprove: encodeURIComponent(this.state.fieldApprove),
+            fileApprove: encodeURIComponent(this.state.fileApprove),
+            artilleryApprove: encodeURIComponent(this.state.artilleryApprove),
+            exerciseManager: encodeURIComponent(this.state.exerciseManager),
+            trainerOfficerApprove: encodeURIComponent(this.state.trainerOfficerApprove)
+        }
+
+        fetch('/api/certifications', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((state) => {
+                this.setState(state)
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                this.setState({ cerRes: 'Error' })
+            });
     }
 
     render() {

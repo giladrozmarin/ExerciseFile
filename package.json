@@ -1,0 +1,21 @@
+{
+  "name": "ExerciseFile",
+  "version": "1.0.0",
+  "description": "Exercise File Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yogev26R/ExerciseFile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yogev26R/ExerciseFile/issues"
+  },
+  "homepage": "https://github.com/Yogev26R/ExerciseFile#readme"
+}
