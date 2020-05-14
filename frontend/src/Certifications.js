@@ -63,13 +63,20 @@ class Certifications extends Component {
         let data = {
             exerciseName: encodeURIComponent(this.state.exerciseName),
             exerciseBy: '1234567', // autofill current user from session
-            exerciseType: encodeURIComponent(this.state.exerciseType),
+            exerciseType: {
+                oob: encodeURIComponent(this.state.exerciseType.oob),
+                tod: encodeURIComponent(this.state.exerciseType.tod),
+                type: encodeURIComponent(this.state.exerciseType.type),
+                live: encodeURIComponent(this.state.exerciseType.live)
+            },
             fieldApprove: encodeURIComponent(this.state.fieldApprove),
             fileApprove: encodeURIComponent(this.state.fileApprove),
             artilleryApprove: encodeURIComponent(this.state.artilleryApprove),
             exerciseManager: encodeURIComponent(this.state.exerciseManager),
             trainerOfficerApprove: encodeURIComponent(this.state.trainerOfficerApprove)
         }
+
+
 
         fetch('/api/certifications', {
             method: 'POST',
@@ -98,29 +105,65 @@ class Certifications extends Component {
                     <br />
 
                     <form onSubmit={this.handleSubmit}>
+
                         <label htmlFor="exerciseName">Exercise name: </label>
                         <input
                             name="exerciseName"
                             type="text"
                             value={this.state.exerciseName}
                             onChange={this.handleChange} />
-
                         <br />
 
-                        <label htmlFor="exerciseType">Exercise type: </label>
-                        <input
-                            name="exerciseType"
-                            type="text"
-                            value={this.state.exerciseType}
-                            onChange={this.handleChange} />
+
+
+
+                        <div name="exerciseType" style={{ display: 'inline-block' }}>
+
+                            <label htmlFor="exerciseType">Exercise type: </label>
+
+                            <label style={{
+                                margin: '0px 0px 0px 35px'
+                            }} htmlFor="oob">Order of battle: </label>
+                            <input
+                                name="Order of battle"
+                                type="number"
+                                min="20"
+                            />
+
+                            <div name="exerciseType" onChange={this.handleChange} style={{ display: 'inline-block', margin: '0px 0px 0px 35px' }}>
+                                < label htmlFor="day" > part of a day: </label>
+                                <input type="radio" name="pod" value="night" />night
+                                    <input type="radio" name="pod" value="day" />day
+                            </div>
+
+
+
+                            <label style={{
+                                margin: '0px 0px 0px 35px'
+                            }} htmlFor="type">Types: </label>
+                            <input list="types" name="browser" />
+                            <datalist id="types">
+                                <option value="Open Terrain"></option>
+                                <option value="Urban warfare" ></option>
+                                <option value="Armoured fighting vechicle" ></option>
+                                <option value="unplanned" ></option>
+                                <option value="live military exercise" ></option>
+                            </datalist>
+                        </div >
+
+                        <input style={{ margin: '0px 0px 0px 35px' }} type="checkbox" name="live" id="live" value="live" />
+                        <label style={{ margin: '0px 0px 0px 5px' }} for="live">live exercise</label><br></br>
 
                         <br />
+                        {/* A JSX comment */}
                         <label htmlFor="fieldApprove">Field approve: </label>
-                        <select id="fieldApproves" name="fieldApprove" defaultValue onChange={this.handleChange}>
-                            <option value="default" hidden></option>
+                        <input list="fieldApproves" name="browser" />
+                        <datalist id="fieldApproves" name="fieldApprove" defaultValue onChange={this.handleChange}>
+
                             {this.state.fieldApproveOptions.map(option =>
-                                <option key={i++} value={option.id}>{option.rank} {option.firstName} {option.lastName}</option>)}
-                        </select>
+                                <option key={i++} data-id={option.id} value={option.rank + " " + option.firstName + " " + option.lastName}></option>)}
+                        </datalist>
+
 
                         <br />
 
@@ -161,12 +204,12 @@ class Certifications extends Component {
                         <br />
 
                         <button type="submit">Send</button>
-                    </form>
+                    </form >
 
                     <p><strong>{this.state.cerRes}</strong></p>
                     <p><strong>{this.state.fieldApprove}</strong></p>
-                </header>
-            </div>
+                </header >
+            </div >
         );
     }
 }
