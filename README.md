@@ -38,3 +38,15 @@ Open terminal in root folder and run the following command:
 npm run dev
 ```
 Then, load http://localhost:3000/ in a browser to see the project's output. 
+
+
+### Basic features
+- [ ] Timeline tracker
+- [X] checking list 
+
+### Extra features
+- [ ] Exercise file notifier
+- [ ] Display filter
+- [ ] Display sort
+- [ ] Search exercise file
+- [ ] Signature types (digital or hand)
