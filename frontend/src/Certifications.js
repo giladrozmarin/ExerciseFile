@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Certifications.css'
 
 class Certifications extends Component {
     constructor(props) {
@@ -6,7 +7,10 @@ class Certifications extends Component {
         this.state = {
             exerciseName: '',
             //exerciseBy: '',  autofill current user from session
+            exerciseOOB: '',
+            exercisePOD: '',
             exerciseType: '', // options should be pull from db
+            exerciseLive: '',
             fieldApprove: '', // options should be pull from db
             fileApprove: '', // options should be pull from db
             artilleryApprove: '', // options should be pull from db
@@ -37,6 +41,7 @@ class Certifications extends Component {
         const name = target.name;
 
         this.setState({ [name]: value });
+        console.log("name: " + name + ". value:" + value)
     }
 
     handleSubmit(event) {
@@ -63,12 +68,10 @@ class Certifications extends Component {
         let data = {
             exerciseName: encodeURIComponent(this.state.exerciseName),
             exerciseBy: '1234567', // autofill current user from session
-            exerciseType: {
-                oob: encodeURIComponent(this.state.exerciseType.oob),
-                tod: encodeURIComponent(this.state.exerciseType.tod),
-                type: encodeURIComponent(this.state.exerciseType.type),
-                live: encodeURIComponent(this.state.exerciseType.live)
-            },
+            exerciseOOB: encodeURIComponent(this.state.exerciseOOB),
+            exercisePOD: encodeURIComponent(this.state.exercisePOD),
+            exerciseType: encodeURIComponent(this.state.exerciseType),
+            exerciseLive: encodeURIComponent(this.state.exerciseLive),
             fieldApprove: encodeURIComponent(this.state.fieldApprove),
             fileApprove: encodeURIComponent(this.state.fileApprove),
             artilleryApprove: encodeURIComponent(this.state.artilleryApprove),
@@ -93,7 +96,9 @@ class Certifications extends Component {
                 console.error('Error:', error);
                 this.setState({ cerRes: 'Error' })
             });
+
     }
+
 
     render() {
         let i = 0
@@ -115,58 +120,63 @@ class Certifications extends Component {
                         <br />
 
 
-
-
-                        <div name="exerciseType" style={{ display: 'inline-block' }}>
-
-                            <label htmlFor="exerciseType">Exercise type: </label>
-
-                            <label style={{
-                                margin: '0px 0px 0px 35px'
-                            }} htmlFor="oob">Order of battle: </label>
+                        {/*exerciseType section */}
+                        <div className='container'  >
+                            {/*Order of battle */}
+                            <label>Exercise type: </label>
+                            <label htmlFor="exerciseOOB">Order of battle: </label>
                             <input
-                                name="Order of battle"
+                                onChange={this.handleChange}
+                                name="exerciseOOB"
                                 type="number"
                                 min="20"
                             />
 
-                            <div name="exerciseType" onChange={this.handleChange} style={{ display: 'inline-block', margin: '0px 0px 0px 35px' }}>
-                                < label htmlFor="day" > part of a day: </label>
-                                <input type="radio" name="pod" value="night" />night
-                                    <input type="radio" name="pod" value="day" />day
+
+                            {/*pod section */}
+                            <div className='container' onChange={this.handleChange}>
+                                <label htmlFor="exercisePOD"> part of a day: </label>
+                                {/*night button */}
+                                <input type="radio" name="exercisePOD" id="night" value="night" />
+                                < label htmlFor="night"> night </label>
+                                {/*day button */}
+                                <input type="radio" name="exercisePOD" id="day" value="day" />
+                                < label htmlFor="day"> day </label>
                             </div>
 
 
-
-                            <label style={{
-                                margin: '0px 0px 0px 35px'
-                            }} htmlFor="type">Types: </label>
-                            <input list="types" name="browser" />
-                            <datalist id="types">
-                                <option value="Open Terrain"></option>
-                                <option value="Urban warfare" ></option>
-                                <option value="Armoured fighting vechicle" ></option>
-                                <option value="unplanned" ></option>
-                                <option value="live military exercise" ></option>
+                            {/*type button */}
+                            <label htmlFor="exerciseType">Types: </label>
+                            <input list="types" name="exerciseType" onChange={this.handleChange} />
+                            <datalist id="types" >
+                                <option value="1" name="Open Terrain"></option>
+                                <option value="2" >Urban warfare</option>
+                                <option value="3" >Armoured fighting vechicle</option>
+                                <option value="4" >unplanned</option>
+                                <option value="5" >live military exercise</option>
                             </datalist>
+
+
+                            {/*live exercise button */}
+                            <input type="checkbox" onChange={this.handleChange} name="exerciseLive" id="live" value="on" />
+                            <label htmlFor="live">live exercise</label><br></br>
                         </div >
 
-                        <input style={{ margin: '0px 0px 0px 35px' }} type="checkbox" name="live" id="live" value="live" />
-                        <label style={{ margin: '0px 0px 0px 5px' }} for="live">live exercise</label><br></br>
-
                         <br />
-                        {/* A JSX comment */}
+
+                        {/*FieldApprove button */}
                         <label htmlFor="fieldApprove">Field approve: </label>
-                        <input list="fieldApproves" name="browser" />
-                        <datalist id="fieldApproves" name="fieldApprove" defaultValue onChange={this.handleChange}>
+                        <input type="text" list="fieldApproves" name="fieldApprove" />
+                        <datalist id="fieldApproves" defaultValue>
 
                             {this.state.fieldApproveOptions.map(option =>
-                                <option key={i++} data-id={option.id} value={option.rank + " " + option.firstName + " " + option.lastName}></option>)}
+                                <option onChange={this.handleChange} key={i++} value={option.id}>{option.rank + " " + option.firstName + " " + option.lastName}</option>)}
                         </datalist>
 
 
                         <br />
 
+                        {/*FileApprove button */}
                         <label htmlFor="fileApprove">File approve: </label>
                         <input
                             name="fileApprove"

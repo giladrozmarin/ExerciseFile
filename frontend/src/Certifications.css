@@ -1,0 +1,10 @@
+.container {
+  display: inline-block;
+  margin-right: 35px;
+}
+.container label {
+  margin-right: 5px;
+}
+.container input {
+  margin-right: 7px;
+}

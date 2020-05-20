@@ -4,9 +4,12 @@ const dal = require('./certDAL');
 function certifications(req, res) {
 
     let new_file = {
-        [DB_PARAMS.EXERCISBY]: req.body.exerciseBy,
+        [DB_PARAMS.EXERCISEBY]: req.body.exerciseBy,
         [DB_PARAMS.EXERCISENAME]: req.body.exerciseName,
-        [DB_PARAMS.EXERCIDETYPE]: req.body.exerciseType,
+        [DB_PARAMS.EXERCISEOOB]: req.body.exerciseOOB,
+        [DB_PARAMS.EXERCISEPOD]: req.body.exercisePOD,
+        [DB_PARAMS.EXERCISETYPE]: req.body.exerciseType,
+        [DB_PARAMS.EXERCISELIVE]: req.body.exerciseLive,
         [DB_PARAMS.FIELDAPPROVE]: req.body.fieldApprove,
         [DB_PARAMS.FILEAPPROVE]: req.body.fileApprove,
         [DB_PARAMS.ARTILLERYAPPROVE]: req.body.artilleryApprove,
