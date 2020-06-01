@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+
 import './Certifications.css'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 class Certifications extends Component {
     constructor(props) {
@@ -103,123 +108,135 @@ class Certifications extends Component {
     render() {
         let i = 0
         return (
-            <div className="Certifications">
-                <header className="Certifications-header">
-                    <h1>Certifications</h1>
+            <MDBContainer fluid>
+                <MDBRow center>
+                    <MDBCol md="4">
+                        <div className="Certifications">
+                            <header className="Certifications-header">
+                                <p className="h1 text-center">Certifications</p>
 
-                    <br />
+                                <br />
 
-                    <form onSubmit={this.handleSubmit}>
+                                <form onSubmit={this.handleSubmit}>
 
-                        <label htmlFor="exerciseName">Exercise name: </label>
-                        <input
-                            name="exerciseName"
-                            type="text"
-                            value={this.state.exerciseName}
-                            onChange={this.handleChange} />
-                        <br />
+                                    <MDBInput
+                                        label="Exercise name"
+                                        name="exerciseName"
+                                        group
+                                        type="text"
+                                        validate
+                                        error="wrong"
+                                        success="right"
+                                        onChange={this.handleChange}
+                                        value={this.state.exerciseName}
+                                    />
 
+                                    {/*exerciseType section */}
 
-                        {/*exerciseType section */}
-                        <div className='container'  >
-                            {/*Order of battle */}
-                            <label>Exercise type: </label>
-                            <label htmlFor="exerciseOOB">Order of battle: </label>
-                            <input
-                                onChange={this.handleChange}
-                                name="exerciseOOB"
-                                type="number"
-                                min="20"
-                            />
-
-
-                            {/*pod section */}
-                            <div className='container' onChange={this.handleChange}>
-                                <label htmlFor="exercisePOD"> part of a day: </label>
-                                {/*night button */}
-                                <input type="radio" name="exercisePOD" id="night" value="night" />
-                                < label htmlFor="night"> night </label>
-                                {/*day button */}
-                                <input type="radio" name="exercisePOD" id="day" value="day" />
-                                < label htmlFor="day"> day </label>
-                            </div>
+                                    {/*Order of battle */}
+                                    <label className="h5">Exercise type: </label>
+                                    <br />
+                                    <label htmlFor="exerciseOOB">Order of battle: </label>
+                                    <input
+                                        onChange={this.handleChange}
+                                        name="exerciseOOB"
+                                        type="number"
+                                        min="20"
+                                    />
 
 
-                            {/*type button */}
-                            <label htmlFor="exerciseType">Types: </label>
-                            <input list="types" name="exerciseType" onChange={this.handleChange} />
-                            <datalist id="types" >
-                                <option value="1" name="Open Terrain"></option>
-                                <option value="2" >Urban warfare</option>
-                                <option value="3" >Armoured fighting vechicle</option>
-                                <option value="4" >unplanned</option>
-                                <option value="5" >live military exercise</option>
-                            </datalist>
+                                    {/*pod section */}
+                                    <div className='container' onChange={this.handleChange}>
+                                        <label className="h6" htmlFor="exercisePOD"> part of a day: </label>
+                                        {/*night button */}
+                                        <input type="radio" name="exercisePOD" id="night" value="night" />
+                                        < label htmlFor="night"> night </label>
+                                        {/*day button */}
+                                        <input type="radio" name="exercisePOD" id="day" value="day" />
+                                        < label htmlFor="day"> day </label>
+                                    </div>
 
 
-                            {/*live exercise button */}
-                            <input type="checkbox" onChange={this.handleChange} name="exerciseLive" id="live" value="on" />
-                            <label htmlFor="live">live exercise</label><br></br>
+                                    {/*type button */}
+                                    <label className="h6" htmlFor="exerciseType">Types: </label>
+                                    <input list="types" name="exerciseType" onChange={this.handleChange} />
+                                    <datalist id="types" >
+                                        <option value="1" name="Open Terrain"></option>
+                                        <option value="2" >Urban warfare</option>
+                                        <option value="3" >Armoured fighting vechicle</option>
+                                        <option value="4" >unplanned</option>
+                                        <option value="5" >live military exercise</option>
+                                    </datalist>
+
+
+                                    {/*live exercise button */}
+                                    <input type="checkbox" onChange={this.handleChange} name="exerciseLive" id="live" value="on" />
+                                    <label htmlFor="live">live exercise</label><br></br>
+
+                                    <br />
+
+                                    {/*FieldApprove button */}
+                                    <label className="h6" htmlFor="fieldApprove">Field approve: </label>
+                                    <input type="text" list="fieldApproves" name="fieldApprove" />
+                                    <datalist id="fieldApproves" defaultValue>
+
+                                        {this.state.fieldApproveOptions.map(option =>
+                                            <option key={i++} value={option.id}>{option.rank + " " + option.firstName + " " + option.lastName}</option>)}
+                                    </datalist>
+
+
+                                    <br />
+
+                                    {/*FileApprove button */}
+                                    <label className="h6" htmlFor="fileApprove">File approve: </label>
+                                    <input
+                                        name="fileApprove"
+                                        type="text"
+                                        value={this.state.fileApprove}
+                                        onChange={this.handleChange} />
+
+                                    <br />
+
+                                    <label className="h6" htmlFor="artilleryApprove">Artillery approve: </label>
+                                    <input
+                                        name="artilleryApprove"
+                                        type="text"
+                                        value={this.state.artilleryApprove}
+                                        onChange={this.handleChange} />
+
+                                    <br />
+
+                                    <label htmlFor="exerciseManager">Exercise manager: </label>
+                                    <input
+                                        name="exerciseManager"
+                                        type="text"
+                                        value={this.state.exerciseManager}
+                                        onChange={this.handleChange} />
+
+                                    <br />
+
+                                    <label htmlFor="trainerOfficerApprove">Trainer officer approve: </label>
+                                    <input
+                                        name="trainerOfficerApprove"
+                                        type="text"
+                                        value={this.state.trainerOfficerApprove}
+                                        onChange={this.handleChange} />
+
+                                    <br />
+
+
+                                    <div className="text-center">
+                                        <MDBBtn color="primary">Send</MDBBtn>
+                                    </div>
+                                </form >
+
+                                <p><strong>{this.state.cerRes}</strong></p>
+                                <p><strong>{this.state.fieldApprove}</strong></p>
+                            </header >
                         </div >
-
-                        <br />
-
-                        {/*FieldApprove button */}
-                        <label htmlFor="fieldApprove">Field approve: </label>
-                        <input type="text" list="fieldApproves" name="fieldApprove" />
-                        <datalist id="fieldApproves" defaultValue>
-
-                            {this.state.fieldApproveOptions.map(option =>
-                                <option onChange={this.handleChange} key={i++} value={option.id}>{option.rank + " " + option.firstName + " " + option.lastName}</option>)}
-                        </datalist>
-
-
-                        <br />
-
-                        {/*FileApprove button */}
-                        <label htmlFor="fileApprove">File approve: </label>
-                        <input
-                            name="fileApprove"
-                            type="text"
-                            value={this.state.fileApprove}
-                            onChange={this.handleChange} />
-
-                        <br />
-
-                        <label htmlFor="artilleryApprove">Artillery approve: </label>
-                        <input
-                            name="artilleryApprove"
-                            type="text"
-                            value={this.state.artilleryApprove}
-                            onChange={this.handleChange} />
-
-                        <br />
-
-                        <label htmlFor="exerciseManager">Exercise manager: </label>
-                        <input
-                            name="exerciseManager"
-                            type="text"
-                            value={this.state.exerciseManager}
-                            onChange={this.handleChange} />
-
-                        <br />
-
-                        <label htmlFor="trainerOfficerApprove">Trainer officer approve: </label>
-                        <input
-                            name="trainerOfficerApprove"
-                            type="text"
-                            value={this.state.trainerOfficerApprove}
-                            onChange={this.handleChange} />
-
-                        <br />
-
-                        <button type="submit">Send</button>
-                    </form >
-
-                    <p><strong>{this.state.cerRes}</strong></p>
-                    <p><strong>{this.state.fieldApprove}</strong></p>
-                </header >
-            </div >
+                    </MDBCol>
+                </MDBRow>
+            </MDBContainer >
         );
     }
 }

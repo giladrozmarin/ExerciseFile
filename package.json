@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Yogev26R/ExerciseFile/issues"
   },
-  "homepage": "https://github.com/Yogev26R/ExerciseFile#readme"
+  "homepage": "https://github.com/Yogev26R/ExerciseFile#readme",
+  "dependencies": {
+    "mdbreact": "^4.27.0"
+  }
 }
