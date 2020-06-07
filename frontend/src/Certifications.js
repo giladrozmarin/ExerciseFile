@@ -118,7 +118,7 @@ class Certifications extends Component {
                                 <br />
 
                                 <form onSubmit={this.handleSubmit}>
-
+                                  {/*exercise name */}
                                     <MDBInput
                                         label="Exercise name"
                                         name="exerciseName"
