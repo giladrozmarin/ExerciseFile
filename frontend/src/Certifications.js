@@ -24,9 +24,7 @@ class Certifications extends Component {
             cerRes: '',
             fieldApproveOptions: []
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+ 
     }
 
     componentDidMount() {
@@ -163,7 +161,7 @@ class Certifications extends Component {
                                     <datalist id="types" >
                                         <option value="1" name="Open Terrain"></option>
                                         <option value="2" >Urban warfare</option>
-                                        <option value="3" >Armoured fighting vechicle</option>
+                                        <option value="3" >Armoured fighting vehicle</option>
                                         <option value="4" >unplanned</option>
                                         <option value="5" >live military exercise</option>
                                     </datalist>
@@ -196,6 +194,7 @@ class Certifications extends Component {
                                         onChange={this.handleChange} />
 
                                     <br />
+                                     {/*artillery Approve button */}
 
                                     <label className="h6" htmlFor="artilleryApprove">Artillery approve: </label>
                                     <input
@@ -205,6 +204,7 @@ class Certifications extends Component {
                                         onChange={this.handleChange} />
 
                                     <br />
+                                     {/*exerciseManager Approve button */}
 
                                     <label htmlFor="exerciseManager">Exercise manager: </label>
                                     <input
@@ -214,6 +214,7 @@ class Certifications extends Component {
                                         onChange={this.handleChange} />
 
                                     <br />
+                                     {/*trainerOfficer Approve button */}
 
                                     <label htmlFor="trainerOfficerApprove">Trainer officer approve: </label>
                                     <input
