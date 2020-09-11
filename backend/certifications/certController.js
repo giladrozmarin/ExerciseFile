@@ -1,11 +1,9 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
+const certModel = require('./certModel');
 
-var certModel = require('./certModel');
+router.post('/', certModel.certifications);//POST is used to send data to a server to create/update a resource.
 
-router.post('/', certModel.certifications);
-
-router.get('/fieldApproveOptions', certModel.fieldApproveOptions);
+router.get('/fieldApproveOptions', certModel.fieldApproveOptions);//GET is used to request data from a specified resource.
 
 module.exports = router;

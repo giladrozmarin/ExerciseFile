@@ -1,0 +1,1 @@
+{"version":3,"sources":["Certifications.css"],"names":[],"mappings":"AAAA,WACE,oBAAqB,CACrB,iBACF,CACA,iBACE,gBACF,CACA,iBACE,gBACF","file":"main.f3c8a00f.chunk.css","sourcesContent":[".container {\n  display: inline-block;\n  margin-right: 35px;\n}\n.container label {\n  margin-right: 5px;\n}\n.container input {\n  margin-right: 7px;\n}\n"]}

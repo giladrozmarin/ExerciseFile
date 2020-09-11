@@ -2,21 +2,24 @@ const express = require('express');
 const app = express();
 const port = 5000;
 
-var certController = require('./certifications/certController');
-
+const loginController =  require('./loginpage/loginController')
+const certController = require('./certifications/certController');
 //handling post requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //
 app.use(express.static('../frontend/build'));
-//
-app.use('/api/certifications', certController);
+//middleware
+app.use('/api/certifications', certController); 
+
+app.use('/api/loginPage', loginController);
 
 
 
 
+    
 
 
 
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Exercise military app listening at http://localhost:${port}`));

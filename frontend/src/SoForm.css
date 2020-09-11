@@ -1,0 +1,98 @@
+.Pedding{
+    padding:center;
+    padding-top: 100px;
+  
+  }
+  
+  
+  .container {
+    display: inline-block;
+    margin-right: 35px;
+  }
+  
+  
+    .md-form input[type=text]:focus {
+    box-shadow: 0 1px 0 0 rgba(230, 230, 6, 0.911) !important;
+    
+    border: 1px solid rgba(230, 230, 6, 0.911) !important;
+    
+    }
+    .md-form input[type='number']:focus {
+      box-shadow: 0 1px 0 0 rgba(230, 230, 6, 0.911) !important;
+      
+      border: 1px solid rgba(230, 230, 6, 0.911) !important;
+      
+      }
+    .md-form input[type='text']:focus:not([readonly]) + label {
+      color: rgba(230, 230, 6, 0.911)  !important;
+    }
+    .md-form input[type='number']:focus:not([readonly]) + label {
+      color: rgba(230, 230, 6, 0.911)  !important;
+    }
+    [type=checkbox]:checked+label:before {
+      border: 2px solid rgba(230, 230, 6, 0.911)  !important;
+      background-color:rgba(230, 230, 6, 0.911)  !important;
+   
+  }
+  label {
+    padding-right: 7px;
+    padding-bottom: 5px;
+  }
+  
+  
+  
+      
+  .rdo {
+    position: relative;
+    display: block;
+    float: left;
+    width: 18px;
+    height: 18px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    background-image: linear-gradient(#f0f0f0, #f0f0f0);
+    box-shadow: inset 0 1px 1px  rgba(230, 230, 6, 0.911), inset 0 -1px 1px rgba(0,0,0,0.15);
+    transition: all 0.15s ease;
+  }
+  .rdo:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 6px;
+    left: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0;
+    transform: scale(0);
+  }
+  .rdo + span {
+    float: left;
+    margin-left: 4px;
+  
+  }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+  .forms label {
+    display: inline-block;
+    margin: 3px;
+    cursor: pointer;
+  }
+  .forms input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+  .forms input[type="radio"]:checked + .rdo {
+    background-color: #606062;
+    background-image: linear-gradient(#cfd225, #cfd225);
+  }
+  .forms input[type="radio"]:checked + .rdo:after {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.15s ease;
+  }
+  
+    
+      
+  
+  

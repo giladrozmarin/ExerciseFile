@@ -1,6 +1,13 @@
 import React from 'react';
-import Certifications from './Certifications'
-import LoginPage from './loginPage'
+//import Certifications from './Certifications'
+//import SignupForm from './loginPage'
+//import NavbarPage from './loginPage'
+//import BackgroundImagePage from './homePage'
+import Home from './try.tsx'
+import SoForm from './SoForm'
+
+
+
 
 function App() {
   return (
@@ -8,8 +15,10 @@ function App() {
     <div className="App">
       <header className="App-header">
       </header>
-      <LoginPage />
-      <Certifications />
+      
+      <Home />
+     {/* <LoginPage /> <CertificationsBackgroundImagePage />*/} 
+      
     </div>
   )
 }

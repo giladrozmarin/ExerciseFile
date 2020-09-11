@@ -1,20 +1,20 @@
-const DB_PARAMS = require('../db');
+const DB = require('../db');
 const dal = require('./certDAL');
 
 function certifications(req, res) {
 
     let new_file = {
-        [DB_PARAMS.EXERCISEBY]: req.body.exerciseBy,
-        [DB_PARAMS.EXERCISENAME]: req.body.exerciseName,
-        [DB_PARAMS.EXERCISEOOB]: req.body.exerciseOOB,
-        [DB_PARAMS.EXERCISEPOD]: req.body.exercisePOD,
-        [DB_PARAMS.EXERCISETYPE]: req.body.exerciseType,
-        [DB_PARAMS.EXERCISELIVE]: req.body.exerciseLive,
-        [DB_PARAMS.FIELDAPPROVE]: req.body.fieldApprove,
-        [DB_PARAMS.FILEAPPROVE]: req.body.fileApprove,
-        [DB_PARAMS.ARTILLERYAPPROVE]: req.body.artilleryApprove,
-        [DB_PARAMS.EXERCISEMANAGER]: req.body.exerciseManager,
-        [DB_PARAMS.TRAINEROFFICERAPPROVE]: req.body.trainerOfficerApprove
+        [DB.PARAMS.EXERCISEBY]: req.body.exerciseBy,
+        [DB.PARAMS.EXERCISENAME]: req.body.exerciseName,
+        [DB.PARAMS.EXERCISEOOB]: req.body.exerciseOOB,
+        [DB.PARAMS.EXERCISEPOD]: req.body.exercisePOD,
+        [DB.PARAMS.EXERCISETYPE]: req.body.exerciseType,
+        [DB.PARAMS.EXERCISELIVE]: req.body.exerciseLive[0] ? req.body.exerciseLive[0] : 'off',
+        [DB.PARAMS.FIELDAPPROVE]: req.body.fieldApprove,
+        [DB.PARAMS.FILEAPPROVE]: req.body.fileApprove,
+        [DB.PARAMS.ARTILLERYAPPROVE]: req.body.artilleryApprove,
+        [DB.PARAMS.EXERCISEMANAGER]: req.body.exerciseManager,
+        [DB.PARAMS.TRAINEROFFICERAPPROVE]: req.body.trainerOfficerApprove
     };
 
     dal.insertOne(new_file, function (dbRes) {
@@ -34,5 +34,4 @@ function fieldApproveOptions(req, res) {
     });
 }
 
-module.exports.certifications = certifications;
-module.exports.fieldApproveOptions = fieldApproveOptions;
+module.exports= {certifications : certifications, fieldApproveOptions : fieldApproveOptions}
