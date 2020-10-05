@@ -8,7 +8,7 @@
 body {
     font-family: "Josefin Sans", sans-serif;
     line-height: 1;
-    position: fixed;
+   
     height: 10%;
    
 }
@@ -42,11 +42,13 @@ menu bar {
 }
  
 .bg {
-    background-image: url("://lh3..com0");
+    background-image: url("https://lh3.googleusercontent.com/gntQJgXj0JcM4QtIT6pEPY6w5QR-6mXdeGXmrbFLdqOMoCtHH0eu0GW6JWHnT94Op8TBobcxbvAqrJctgrrgp-PMw-6IjmcmYs0oP5NbLckHXPl9xRFGH57aQ-FQumptCDjCggZzsQ=w2400") ;
     height: 100vh;
+ 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
    
     
     }
@@ -58,9 +60,9 @@ $main-color: rgb(0, 0, 0);
 // Pricing table
 .pricing-table {
     display: table;
-    position: relative;
+    position: fixed;
     width: 100%;
-    padding: 11%;
+    padding: 18%;
     .pricing-option {
         width: 28%;
         font-weight: bold;

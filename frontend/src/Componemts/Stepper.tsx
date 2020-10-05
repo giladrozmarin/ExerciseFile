@@ -1,86 +1,130 @@
-import {Button, Card, CardContent, CircularProgress, Grid, Step, StepLabel, Stepper} from '@material-ui/core';
-import {Box} from '@material-ui/core' ;
+import { Button, Card, CardContent, CircularProgress, Grid, Step, StepLabel, Stepper } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
+import { makeStyles } from '@material-ui/core/styles';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useState } from 'react';
-import { mixed, number, object } from 'yup';
 import Certifications from './Certifications'
-import LoginPageF from './loginPageF'
+import InstrucEmphasis from'./InstrucEmphasis'
 import SoForm from './SoForm'
+import SafetyProgram from "./SafetyProgram"
+import Preparation from "./Preparation"
+import { SignupSchema } from '../Validation/CustomInputComponents';
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 200,
+  }
+})
+
+
 
 const sleep = (time: any) => new Promise((acc) => setTimeout(acc, time));
 
 export default function Home() {
+  const classes = useStyles();
   return (
-    <Card>
-      <CardContent>
+  
+    <Card 
+    style= {{ display: 'inline'}}
+    >
+      <CardContent style= {{ display: 'inline'}}>
         <FormikStepper
-          initialValues={{
+          
+         
+         initialValues={{
+            exerciseName: '',
+            //exerciseBy: '',  autofill current user from session
+            exerciseOOB: '',
+            exercisePOD: '',
+            exerciseType: '', // options should be pull from db
+            exerciseLive: '',
+            fieldApprove: '', // options should be pull from db
+            fileApprove: '', // options should be pull from db
+            artilleryApprove: '', // options should be pull from db
             exerciseManager: '',
-            lastName: '',
-            millionaire: false,
-            money: 0,
-            description: '',
+            trainerOfficerApprove: '', // options should be pull from db
+            cerRes: '',
+            fieldApproveOptions: [],
+            safetyManager: '',
+            safetyManagerlist: [],
+            exerciseGoal: '',
+            exerciseSubject:'',
+            ofb:'',
+            rank:'',
+            firstName:'',
+            lastname:''
           }}
           onSubmit={async (values) => {
             await sleep(3000);
             console.log('values', values);
           }}
         >
+
           <FormikStep label="Certifications">
             <Box paddingBottom={2}>
-            <Certifications   ></Certifications>
+              <Certifications />
             </Box>
           </FormikStep>
-          <FormikStep 
-            label="loginPageF"
-            validationSchema={object({
-              money: mixed().when('millionaire', {
-                is: true,
-                then: number()
-                  .required()
-                  .min(
-                    1_000_000,
-                    'Because you said you are a millionaire you need to have 1 million'
-                  ),
-                otherwise: number().required(),
-              }),
-            })}
+
+          <FormikStep
+            label="soForm"
+            //validationSchema={SignupSchema}
           >
             <Box paddingBottom={2}>
-            <SoForm ></SoForm>
-             
+              <SoForm />
             </Box>
           </FormikStep>
-          <FormikStep label="More Info">
+
+          <FormikStep label="Instructional Emphasis">
             <Box paddingBottom={2}>
-              <Field fullWidth name="description" component={TextField} label="Description" />
+            <InstrucEmphasis />
             </Box>
           </FormikStep>
-          <FormikStep label="More Info">
+
+          <FormikStep label="Safety Program">
             <Box paddingBottom={2}>
-              <Field fullWidth name="description" component={TextField} label="Description" />
+            <SafetyProgram />
             </Box>
           </FormikStep>
+
+          <FormikStep label="Safety Program">
+            <Box paddingBottom={2}>
+            <Preparation />
+            </Box>
+          </FormikStep>
+
         </FormikStepper>
       </CardContent>
     </Card>
+    
   );
 }
 
+
+//This is the FormikStepProps interface 
+//
 export interface FormikStepProps
   extends Pick<FormikConfig<FormikValues>, 'children' | 'validationSchema'> {
   label: string;
 }
 
+//FormikStep function : get one children, check if this FormikStepProps and return the children
 export function FormikStep({ children }: FormikStepProps) {
   return <>{children}</>;
 }
 
+
+//FormikStepper this is wrapper to Formik
 export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
+  //get childrenArray 
   const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
+  //Step Hooks
   const [step, setStep] = useState(0);
+  //get the current childrenArray 
   const currentChild = childrenArray[step];
+  console.log(childrenArray )
+  //completed Hooks
   const [completed, setCompleted] = useState(false);
 
   function isLastStep() {
@@ -88,7 +132,9 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
   }
 
   return (
+   
     <Formik
+    
       {...props}
       validationSchema={currentChild.props.validationSchema}
       onSubmit={async (values, helpers) => {
@@ -99,6 +145,9 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
           setStep((s) => s + 1);
         }
       }}
+
+
+      
     >
       {({ isSubmitting }) => (
         <Form autoComplete="off">
@@ -140,5 +189,6 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
         </Form>
       )}
     </Formik>
+    
   );
 }

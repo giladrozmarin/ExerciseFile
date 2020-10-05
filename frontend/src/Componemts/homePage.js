@@ -4,9 +4,9 @@ import './homePage.scss';
 
 const BackgroundImagePage = () => {
     return (
+ 
 
-
-        <div className="bg">
+<div className="bg" >
 
 
   
@@ -23,19 +23,19 @@ const BackgroundImagePage = () => {
 
             <h1 class="demo-title"></h1>
 
-            <div class="pricing-table" style={{position:"relative"}}>
+            <div class="pricing-table" >
                 <div class="pricing-option">
                     <i class="material-icons">important_devices</i>
                     <h1>Create Exercise File</h1>
                     <hr />
-                    <p>Click here if you want to create a new exercise file.</p>
+                    <p> Click here if you want to create a new exercise file.</p>
                     <hr />
                     <div class="price">
                         <div class="front">
                             <span class="price"><b></b></span>
                         </div>
                         <div class="back">
-                            <a href="#" class="button">Create</a>
+                            <a href="/stepper" class="button">Create</a>
                         </div>
                     </div>
                 </div>

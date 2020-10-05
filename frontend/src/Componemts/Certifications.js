@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, mdbWavesEffect } from 'mdbreact';
-import { useFormik } from 'formik';
-import { Card, CardContent } from '@material-ui/core'
+import { useFormik ,Field} from 'formik';
+import { Card, CardContent} from '@material-ui/core'
+import {TextField} from "formik-material-ui"
 import * as Yup from 'yup'
 import axios from 'axios'
-
+import {certification} from '../initialValues'
 import './Certifications.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -25,25 +26,10 @@ const Certifications = () => {
             }
             ).catch(err => console.log(err))
     }, [])
-
+  
     const formik = useFormik({
 
-        initialValues: {
-            exerciseName: '',
-            //exerciseBy: '',  autofill current user from session
-            exerciseOOB: '',
-            exercisePOD: '',
-            exerciseType: '', // options should be pull from db
-            exerciseLive: '',
-            fieldApprove: '', // options should be pull from db
-            fileApprove: '', // options should be pull from db
-            artilleryApprove: '', // options should be pull from db
-            exerciseManager: '',
-            trainerOfficerApprove: '', // options should be pull from db
-            cerRes: '',
-            fieldApproveOptions: []
-
-        },
+        
 
         onSubmit: values => {
             axios.post('/api/certifications', values)
@@ -57,6 +43,7 @@ const Certifications = () => {
     })
 
     return (
+       
         <Card>
             <CardContent>
                 <div className="Pedding">
@@ -65,29 +52,30 @@ const Certifications = () => {
                         <MDBRow center  >
                             <MDBCol md="4"  >
                                 <div className="MDBColor">
-                                    <form onSubmit={formik.handleSubmit} autoComplete="off">
+                                    <form /*onSubmit={formik.onSubmit}*/ autoComplete="off">
                                         <p className="h1 text-center" style={{ paddingTop: "10px", fontWeight: "bold" }}>Certifications</p>
                                         <div className="Certifications">
-
-                                            <MDBInput
+                         
+                                           
+                                            <Field
                                                 label="Exercise name"
-                                                name="exerciseName"
+                                                component ={TextField}
+                                                name={"exerciseName"}
                                                 type="text"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.exerciseName}
                                                 outline
                                                 size="lg"
+                                            //    {...formik.getFieldProps('exerciseName')}
+                                           //     {...console.log({...formik.getFieldProps('exerciseName')})}
                                             />
-
+                                          
 
                                             <MDBInput
                                                 label="Exercise type"
                                                 name="exerciseType"
                                                 list="types"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.exerciseType}
                                                 outline
                                                 size="lg"
+                                             //   {...formik.getFieldProps('exerciseType')}
 
                                             />
 
@@ -109,10 +97,9 @@ const Certifications = () => {
                                                 name="exerciseOOB"
                                                 type="number"
                                                 min="20"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.exerciseOOB}
                                                 outline
                                                 size="lg"
+                                           
                                             />
 
 
@@ -122,10 +109,9 @@ const Certifications = () => {
                                                 label="fieldApprove"
                                                 name="fieldApprove"
                                                 list="fieldApproves"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.fieldApprove}
                                                 outline
                                                 size="lg"
+                                           //     {...formik.getFieldProps('fieldApprove')}
                                             />
                                             <datalist id="fieldApproves" defaultValue>
 
@@ -142,33 +128,26 @@ const Certifications = () => {
                                                 label="fileApprove"
                                                 name="fileApprove"
                                                 type="text"
-                                                value={formik.values.fileApprove}
-                                                onChange={formik.handleChange}
                                                 outline
                                                 size="lg"
+                                              //  {...formik.getFieldProps('fileApprove')}
                                             />
                                             <MDBInput
                                                 label="artilleryApprove"
                                                 name="artilleryApprove"
                                                 type="text"
-                                                value={formik.values.artilleryApprove}
-                                                onChange={formik.handleChange}
                                                 outline
                                                 size="lg"
+                                              //  {...formik.getFieldProps('artilleryApprove')}
                                             />
-                                            <MDBInput
+                                            <Field
                                                 label="exerciseManager"
                                                 name="exerciseManager"
                                                 type="text"
-                                                value={formik.values.exerciseManager}
-                                                onChange={formik.handleChange}
                                                 outline
                                                 size="lg"
-                                              
-
-                                                
-                                               
-
+                                                component ={TextField}
+                                              //  {...formik.getFieldProps('exerciseManager')}
                                             />
                                             
 
@@ -176,22 +155,21 @@ const Certifications = () => {
                                                 label="trainerOfficerApprove"
                                                 name="trainerOfficerApprove"
                                                 type="text"
-                                                value={formik.values.trainerOfficerApprove}
-                                                onChange={formik.handleChange}
                                                 outline
                                                 size="lg"
-
+                                              //  {...formik.getFieldProps('trainerOfficerApprove')}
                                             />
+
+                                            
 
                                             <div style={{ fontSize: "large", fontWeight: "bold" }} className="custom-control custom-checkbox">
 
                                                 <input type="checkbox"
-                                                    onChange={formik.handleChange}
-                                                    value={formik.values.exerciseLive}
                                                     className="custom-control-input"
                                                     name="exerciseLive"
                                                     id="live"
                                                     value="on"
+                                                //    {...formik.getFieldProps('exerciseLive')}
 
                                                 />
                                                 <label className="custom-control-label" htmlFor="live"> live exercise</label>
@@ -200,17 +178,18 @@ const Certifications = () => {
 
 
 
-
-                                            {/*pod section*/}
+{/** 
+                                            /*pod section
                                             <span style={{ fontSize: "large", fontWeight: "bold", float: "left" }} >part of the day:</span>
-                                            <div className="forms" style={{ fontWeight: "bold" }} onChange={formik.handleChange} value={formik.values.exercisePOD}  >
-                                                {/*night button*/}
+                                            <div className="forms" style={{ fontWeight: "bold" }}   {...formik.getFieldProps('exercisePOD')} >
+                                                /*night button
                                                 <label htmlFor="rdo1">
                                                     <input type="radio" id="rdo1" name="exercisePOD" value="night" />
                                                     <span className="rdo"></span>
                                                     <span>night</span>
                                                 </label>
-                                                {/*day button*/}
+                                                
+                                                /*day button
                                                 <label htmlFor="rdo2">
                                                     <input type="radio" id="rdo2" name="exercisePOD" value="day" />
                                                     <span className="rdo"></span>
@@ -219,7 +198,7 @@ const Certifications = () => {
 
                                             </div>
 
-
+                                            */}                
 
 
 
@@ -238,10 +217,10 @@ const Certifications = () => {
                 </div>
             </CardContent>
         </Card>
+   
     );
     
-    {{sessionStorage.setItem('exerciseManager',formik.values.exerciseManager)}}
 
 }
- 
+
 export default Certifications;
