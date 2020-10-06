@@ -5,15 +5,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useState } from 'react';
 import Certifications from './Certifications'
-import InstrucEmphasis from'./InstrucEmphasis'
+import InstrucEmphasis from'./InstructEmphasis'
 import SoForm from './SoForm'
 import SafetyProgram from "./SafetyProgram"
 import Preparation from "./Preparation"
 import { SignupSchema } from '../Validation/CustomInputComponents';
+import MenuAppBar from "./AppBar"
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 200,
+    backgroundColor: 'black',
   }
 })
 
@@ -24,11 +25,11 @@ const sleep = (time: any) => new Promise((acc) => setTimeout(acc, time));
 export default function Home() {
   const classes = useStyles();
   return (
-  
-    <Card 
-    style= {{ display: 'inline'}}
+    <>
+    <MenuAppBar />
+    <Card  
     >
-      <CardContent style= {{ display: 'inline'}}>
+      <CardContent  style={{backgroundColor: "#17202A"}}>
         <FormikStepper
           
          
@@ -97,6 +98,7 @@ export default function Home() {
         </FormikStepper>
       </CardContent>
     </Card>
+    </>
     
   );
 }
@@ -150,17 +152,17 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
       
     >
       {({ isSubmitting }) => (
-        <Form autoComplete="off">
-          <Stepper alternativeLabel activeStep={step}>
+        <Form autoComplete="off" >
+          <Stepper alternativeLabel activeStep={step} style={{backgroundColor: '#17202A' ,color:"ffffff"}}>
             {childrenArray.map((child, index) => (
               <Step key={child.props.label} completed={step > index || completed}>
-                <StepLabel>{child.props.label}</StepLabel>
+                <StepLabel  style={{color:"ffffff"}}>{child.props.label}</StepLabel>
               </Step>
             ))}
           </Stepper>
 
           {currentChild}
-
+          
           <Grid container spacing={2}>
             {step > 0 ? (
               <Grid item>

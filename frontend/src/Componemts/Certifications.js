@@ -5,12 +5,20 @@ import { Card, CardContent} from '@material-ui/core'
 import {TextField} from "formik-material-ui"
 import * as Yup from 'yup'
 import axios from 'axios'
-import {certification} from '../initialValues'
+
 import './Certifications.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import { makeStyles } from '@material-ui/core/styles';
 
+
+
+const useStyles = makeStyles({
+    root: {
+      backgroundColor: 'yellow'
+    }
+  })
 //now check that the value get correct to the database
 const Certifications = () => {
     //state             //Setstate
@@ -44,8 +52,8 @@ const Certifications = () => {
 
     return (
        
-        <Card>
-            <CardContent>
+        <Card className="bg1" >
+            <CardContent >
                 <div className="Pedding">
                     <MDBContainer fluid  >
 

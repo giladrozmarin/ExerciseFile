@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react'
 import MaterialTable, { MTableEditRow, MTableEditField } from "material-table"
+import axios from 'axios';
 
 
 
@@ -54,19 +55,21 @@ function MeansOfExercise(props) {
               resolve();
             }, 1000)
           }),
+
         onRowUpdate: (newData, oldData) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              const dataUpdate = [...data];
-              const index = oldData.tableData.id;
-              dataUpdate[index] = newData;
-              setData([...dataUpdate]);
+        axios.post('/api/InstrucEmphasis/MeansOfExercise',newData)
+        .then(function(response){
+          console.log(response)
+          const dataUpdate = [...data];
+          const index = oldData.tableData.id;
+          dataUpdate[index] = newData;
+          setData([...dataUpdate]);
+        })
+        .catch(function (error) {
+         console.log(error);
+        }),
 
-              resolve();
-            }, 1000)
-          }),
-
-
+        
       }}
       
     />
@@ -74,3 +77,4 @@ function MeansOfExercise(props) {
   )
 }
 export default MeansOfExercise
+

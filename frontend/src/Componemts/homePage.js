@@ -1,19 +1,18 @@
 import React from "react";
 import './homePage.scss';
-
+import MenuAppBar from "./AppBar" 
 
 const BackgroundImagePage = () => {
     return (
- 
+
+        <>
+ <MenuAppBar />
 
 <div className="bg" >
 
-
-  
-        
 <div class="menu bar">
                 <ul>
-                <li><a href="#">exit</a></li>
+                <br></br>
               
                 </ul>
           
@@ -74,7 +73,7 @@ const BackgroundImagePage = () => {
             </div>
             <div className="rectangle"></div>
         </div>
-
+</>
     );
 }
 

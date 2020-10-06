@@ -11,6 +11,7 @@ import Preparation from  "./Componemts/Preparation"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import stepper from "./Componemts/Stepper" 
 
+
 function App() {
   return (
 
@@ -23,7 +24,7 @@ function App() {
           <Route exact path="/" component={BackgroundImagePage} />
         </Switch>
       </Router>
-      <BackgroundImagePage />
+     
      {/* <LoginPage  Weather/> <CertificationsBackgroundImagePage />*/} 
       
     </div>

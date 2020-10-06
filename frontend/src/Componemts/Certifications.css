@@ -9,7 +9,16 @@
   display: inline-block;
   margin-right: 35px;
 }
+.bg1 {
+  background-image: url("https://lh3.googleusercontent.com/T4Vyom2OO2QgIZojNMysSqup_Lp2pDo21qnxbswlPc_gTOuvWv7PnTK6Uqb6_wkjzwl_tv_DRQzv98iZI0B-meuJ7tqqcBfuIyfBzatBnAmNDI8HX_XdOZSS3HAYmeDrBaJQtzbJmg=w2400") ;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
+ 
+ 
+  
+  }
 
   .md-form input[type=text]:focus {
   box-shadow: 0 1px 0 0 rgba(230, 230, 6, 0.911) !important;
