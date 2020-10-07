@@ -1,98 +1,99 @@
-const Engine = require('./node_modules/json-rules-engine').Engine
-const Rule = require('./node_modules/json-rules-engine').Rule
+const Engine = require('../node_modules/json-rules-engine').Engine
+const Rule = require('../node_modules/json-rules-engine').Rule
 const fs = require('fs');
-const file = require('./json-rules.json')
-
-
+const path = require('path');
 
 module.exports = class RuleEngine {
-    
 
-    
-
-    
-    constructor(){
-        this.engine = new Engine(this.readRules());
-        this.ruleCount = 0;
-    }
-   
-    readRules(){
-        let jsonString =
-        JSON.parse(fs.readFileSync('${file}'));
-
-
-        2
-      return  result = Object.entries(jsonString);
-      
-
+    constructor() {
+        let rules = this.readRules()
+        this.ruleCount = rules.length + 1;
+        console.log(rules);
+        this.engine = new Engine(rules);
     }
 
-    addRule(conditions, evt){
-    let options;
-   conditions.foreach(condition =>{
-        options.conditions.any.all.push(
-            {fact: condition.fact,
-              operator:  condition.fact,
-              value: condition.value }
-        )
-    })
+    readRules() {
+        var jsonPath = path.join(__dirname, 'json-rules.json');
+        let jsonObj = JSON.parse(fs.readFileSync(jsonPath));
+        let jsonArr = Object.entries(jsonObj);
+        jsonArr.map((cell, i) => jsonArr[i] = cell[1]);
+        return jsonArr;
+    }
 
-    options.event = {  // define the event to fire when the conditions evaluate truthy
-        type: evt.type,
-        params: {
-            message: evt.msg
-        }
+    addRule(conditions, evt) {
+        let options;
+        conditions.foreach(condition => {
+            options.conditions.any.all.push(
+                {
+                    fact: condition.fact,
+                    operator: condition.operator,
+                    value: condition.value
+                }
+            )
+        })
 
-// let options = {
-//     conditions: {
-//         any: [{
-//             all: [{
-//                 fact: cond1.fact,
-//                 operator: cond1.operator,
-//                 value: cond1.value
-//             },
-//             {
-//                 fact: cond2.fact,
-//                 operator:  dic[pred].operator,
-//                 value:  dic[pred].value
-//             }]
-//         }]
-//     },
-//     event: {  // define the event to fire when the conditions evaluate truthy
-//         type: 'Urban-warfarecantuseM113',
-//         params: {
-//             message: 'Urban-warfare cant use M113'
-//         }
-//     }
-};
+        options.event = {  // define the event to fire when the conditions evaluate truthy
+            type: evt.type,
+            params: {
+                message: evt.msg
+            }
 
- 
+            // let options = {
+            //     conditions: {
+            //         any: [{
+            //             all: [{
+            //                 fact: cond1.fact,
+            //                 operator: cond1.operator,
+            //                 value: cond1.value
+            //             },
+            //             {
+            //                 fact: cond2.fact,
+            //                 operator:  dic[pred].operator,
+            //                 value:  dic[pred].value
+            //             }]
+            //         }]
+            //     },
+            //     event: {  // define the event to fire when the conditions evaluate truthy
+            //         type: 'Urban-warfarecantuseM113',
+            //         params: {
+            //             message: 'Urban-warfare cant use M113'
+            //         }
+            //     }
+        };
 
-let rule = new Rule(options)
 
-this.engine.addRule(rule)
-let count = ++this.ruleCount
 
-newRule ={count : rule}
-let jsonString = rule.toJSON()
-}
+        let rule = new Rule(options)
 
-// Run the engine to evaluate
- checkRules(facts, callback){
-    this.engine
-    .run(facts)
-    .then(results => {
-        errors = []
-        // 'results' is an object containing successful events, and an Almanac instance containing facts
-        results.events.map(event =>errors.push(event.params.message))
-        callback(errors);
-    })
-}
+        this.engine.addRule(rule)
 
-// let jsonString = rule.toJSON()
- //fs.writeFile("json-rules.json", jsonString, function (err) {
-  //  if (err) {
-   //     console.log(err);
-//     }
-// });
+        newRule = { [this.ruleCount++]: rule }
+        var jsonPath = path.join(__dirname, 'json-rules.json');
+        let jsonString = newRule.toJSON()
+
+        fs.writeFileSync(jsonPath, jsonString, { flag: "wx" }, function (err) {
+            if (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    // Run the engine to evaluate
+    checkRules(facts, callback) {
+        this.engine
+            .run(facts)
+            .then(results => {
+                errors = []
+                // 'results' is an object containing successful events, and an Almanac instance containing facts
+                results.events.map(event => errors.push(event.params.message))
+                callback(errors);
+            })
+    }
+
+    // let jsonString = rule.toJSON()
+    //fs.writeFile("json-rules.json", jsonString, function (err) {
+    //  if (err) {
+    //     console.log(err);
+    //     }
+    // });
 }
