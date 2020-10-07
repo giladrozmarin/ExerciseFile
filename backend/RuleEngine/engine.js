@@ -3,13 +3,18 @@ const Rule = require('../node_modules/json-rules-engine').Rule
 const fs = require('fs');
 const path = require('path');
 
-module.exports = class RuleEngine {
+class RuleEngine {
 
     constructor() {
+        if (RuleEngine.instance instanceof RuleEngine)
+            return RuleEngine.instance
+
         let rules = this.readRules()
         this.ruleCount = rules.length + 1;
         console.log(rules);
         this.engine = new Engine(rules);
+
+        RuleEngine.instance = this
     }
 
     readRules() {
@@ -83,11 +88,11 @@ module.exports = class RuleEngine {
         this.engine
             .run(facts)
             .then(results => {
-                errors = []
+                let errors = []
                 // 'results' is an object containing successful events, and an Almanac instance containing facts
                 results.events.map(event => errors.push(event.params.message))
                 callback(errors);
-            })
+            }).catch(reason => console.log(reason))
     }
 
     // let jsonString = rule.toJSON()
@@ -97,3 +102,5 @@ module.exports = class RuleEngine {
     //     }
     // });
 }
+
+module.exports = { RuleEngine }

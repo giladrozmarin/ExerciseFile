@@ -2,7 +2,7 @@ const DB = require('../db');
 const dal = require('./ieDAL');
 
 function MeansOfExercise(req, res) {
- //{unit: "Artillery battery A", gun: 1, M548: 2, Track: 3, M113: 4,BMP-1: 5, Rocket: 6,Artilley: 7 ,light vehicle: 8}
+    //{unit: "Artillery battery A", gun: 1, M548: 2, Track: 3, M113: 4,BMP-1: 5, Rocket: 6,Artilley: 7 ,light vehicle: 8}
 
     let facts = {
         [DB.MOE.UNIT]: req.body.unit,
@@ -18,7 +18,8 @@ function MeansOfExercise(req, res) {
     };
 
     dal.CheckRules(facts, function (engineRes) {
-        res.send({ engineRes });
+        console.log(engineRes);
+        res.send(engineRes);
     });
 }
 
