@@ -21,7 +21,7 @@ module.exports = class RuleEngine {
         JSON.parse(fs.readFileSync('${file}'));
 
 
-        2
+        
       return  result = Object.entries(jsonString);
       
 
