@@ -5,7 +5,8 @@ const port = 5000;
 const loginController = require('./loginpage/loginController')
 const certController = require('./certifications/certController');
 const soFormController = require('./soForm/soFormController')
-const ieController = require('./instructEmphasis/ieController')
+const ieController = require('./InstructEmphasis/ieController')
+ 
 //handling post requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -16,6 +17,8 @@ app.use('/api/certifications', certController);
 
 app.use('/api/instructEmphasis', ieController);
 
+
+app.use('/api/instructEmphasis', ieController);
 app.use('/api/loginPage', loginController);
 
 app.use('/api/soForm', soFormController);

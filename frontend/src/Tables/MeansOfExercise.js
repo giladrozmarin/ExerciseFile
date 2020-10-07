@@ -2,14 +2,15 @@
 import React, { useState, useEffect } from 'react'
 import MaterialTable, { MTableEditRow, MTableEditField } from "material-table"
 import axios from 'axios';
-
+import {useFormikContext} from 'formik'
 
 
 
 function MeansOfExercise(props) {
    
 
-
+  const { values } = useFormikContext()
+  const { exerciseType } = values
   const [columns, setColumns] = useState([
     {
       title: 'Unit Name', field: 'unit',editable: "never",
@@ -25,7 +26,7 @@ function MeansOfExercise(props) {
     { title: 'M548', field: 'M548',  type: 'numeric' },
     { title: 'Track', field: 'Track',  type: 'numeric' },
     { title: 'M113', field: 'M113',  type: 'numeric' },
-    { title: 'BMP-1', field: 'BMP-1',  type: 'numeric' },
+    { title: 'BMP-1', field: 'BMP_1',  type: 'numeric' },
     { title: 'Rocket', field: 'Rocket',  type: 'numeric' },
     { title: 'Artilley', field: 'Artilley',  type: 'numeric' },
     { title: 'light vehicle', field: 'light vehicle',  type: 'numeric' },
@@ -56,9 +57,12 @@ function MeansOfExercise(props) {
             }, 1000)
           }),
 
-        onRowUpdate: (newData, oldData) =>
-        axios.post('/api/InstrucEmphasis/MeansOfExercise',newData)
+        onRowUpdate: (newData, oldData) => {
+        newData.terrain = "exerciseType";
+   
+        axios.post('/api/InstructEmphasis/MeansOfExercise',newData)
         .then(function(response){
+        
           console.log(response)
           const dataUpdate = [...data];
           const index = oldData.tableData.id;
@@ -67,9 +71,13 @@ function MeansOfExercise(props) {
         })
         .catch(function (error) {
          console.log(error);
-        }),
+        })}
+        ,      
+       
 
-        
+
+
+
       }}
       
     />

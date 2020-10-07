@@ -2,19 +2,19 @@ const DB = require('../db');
 const dal = require('./ieDAL');
 
 function MeansOfExercise(req, res) {
+ //{unit: "Artillery battery A", gun: 1, M548: 2, Track: 3, M113: 4,BMP-1: 5, Rocket: 6,Artilley: 7 ,light vehicle: 8}
 
     let facts = {
-        [DB.PARAMS.EXERCISEBY]: req.body.exerciseBy,
-        [DB.PARAMS.EXERCISENAME]: req.body.exerciseName,
-        [DB.PARAMS.EXERCISEOOB]: req.body.exerciseOOB,
-        [DB.PARAMS.EXERCISEPOD]: req.body.exercisePOD,
-        [DB.PARAMS.EXERCISETYPE]: req.body.exerciseType,
-        [DB.PARAMS.EXERCISELIVE]: req.body.exerciseLive[0] ? req.body.exerciseLive[0] : 'off',
-        [DB.PARAMS.FIELDAPPROVE]: req.body.fieldApprove,
-        [DB.PARAMS.FILEAPPROVE]: req.body.fileApprove,
-        [DB.PARAMS.ARTILLERYAPPROVE]: req.body.artilleryApprove,
-        [DB.PARAMS.EXERCISEMANAGER]: req.body.exerciseManager,
-        [DB.PARAMS.TRAINEROFFICERAPPROVE]: req.body.trainerOfficerApprove
+        [DB.MOE.UNIT]: req.body.unit,
+        [DB.MOE.GUN]: req.body.gun,
+        [DB.MOE.M548]: req.body.M548,
+        [DB.MOE.TRACK]: req.body.Track,
+        [DB.MOE.M113]: req.body.M113,
+        [DB.MOE.BMP_1]: req.body.BMP_1,
+        [DB.MOE.ROCKET]: req.body.Rocket,
+        [DB.MOE.ARTILLERY]: req.body.Artilley,
+        [DB.MOE.LIGHT_VEHICLE]: req.body.artilleryApprove,
+        [DB.MOE.TERRAIN]: req.body.terrain
     };
 
     dal.CheckRules(facts, function (engineRes) {

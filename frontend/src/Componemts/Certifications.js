@@ -60,8 +60,8 @@ const Certifications = () => {
                         <MDBRow center  >
                             <MDBCol md="4"  >
                                 <div className="MDBColor">
-                                    <form /*onSubmit={formik.onSubmit}*/ autoComplete="off">
-                                        <p className="h1 text-center" style={{ paddingTop: "10px", fontWeight: "bold" }}>Certifications</p>
+                                    <form className="form"/*onSubmit={formik.onSubmit}*/ autoComplete="off">
+                                        <p className="h1 text-center" style={{ paddingBottom:"10px", fontWeight: "bold" }}>Certifications</p>
                                         <div className="Certifications">
                          
                                            

@@ -32,10 +32,25 @@ const PARAMS = {
     ARTILLERYAPPROVE: "artilleryApprove",
     EXERCISEMANAGER: "exerciseManager",
     TRAINEROFFICERAPPROVE: "trainerOfficerApprove"
+
+};
+ //{unit: "Artillery battery A", gun: 1, M548: 2, Track: 3, M113: 4,BMP-1: 5, Rocket: 6,Artilley: 7 ,light vehicle: 8 terrain :Urban warfare}
+ const MOE = {
+   
+    UNIT: "unit",
+    GUN: "gun",
+    M548: "M548",
+    TRACK: "Track",
+    M113: "M113",
+    BMP_1: "BMP-1",
+    ROCKET: "Rocket",
+    ARTILLERY: "Artilley",
+    LIGHT_VEHICLE: "light vehicle",
+    TERRAIN: "terrain"
+ 
 };
 
 
 
 
-
-module.exports = { PARAMS ,USER }
+module.exports = { PARAMS ,USER,MOE }

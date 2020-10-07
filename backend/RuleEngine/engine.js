@@ -2,29 +2,30 @@ const Engine = require('./node_modules/json-rules-engine').Engine
 const Rule = require('./node_modules/json-rules-engine').Rule
 const fs = require('fs');
 
+let engine;
 
-/**
- * Setup a new engine
- */
-let engine = new Engine();
+function setup(){
+ engine = new Engine();
+}
 
-// dic = { "cantuse": {operator: equal, value: 0}}
+// dic = { "cantuse": {operator: 'greaterThanInclusive', value: 0}}
 //  [ { p: 'cantuse', s: 'Urban-warfare', o: 'APC' } ]
 // { p: 'type', s: 'M-113', o: 'APC' },
 // { p: 'type', s: 'BMP-1', o: 'APC' },
+function addRule(cond1, cond2, pred){
 
 let options = {
     conditions: {
         any: [{
             all: [{
-                fact: 'terrain',
-                operator: 'equal',
-                value: 'Urban-warfare'
+                fact: cond1.fact,
+                operator: cond1.operator,
+                value: cond1.value
             },
             {
-                fact: 'M113',
-                operator: 'greaterThanInclusive',
-                value: 0
+                fact: cond2.fact,
+                operator:  dic[pred].operator,
+                value:  dic[pred].value
             }]
         }]
     },
@@ -39,25 +40,19 @@ let options = {
 let rule = new Rule(options)
 
 engine.addRule(rule)
-
-let facts = {
-    terrain: 'Urban-warfare',
-    M113: 3
 }
 
 // Run the engine to evaluate
+function checkRules(facts, callback){
 engine
     .run(facts)
     .then(results => {
+        errors = []
         // 'results' is an object containing successful events, and an Almanac instance containing facts
-        results.events.map(event => console.log(event.params.message))
+        results.events.map(event =>errors.push(event.params.message))
+        callback(errors);
     })
-
-/*
- * Output:
- *
- * Player has fouled out!
- */
+}
 
 let jsonString = rule.toJSON()
 fs.writeFile("json-rules.json", jsonString, function (err) {
@@ -65,3 +60,5 @@ fs.writeFile("json-rules.json", jsonString, function (err) {
         console.log(err);
     }
 });
+
+module.exports = { setup,addRule,checkRules }

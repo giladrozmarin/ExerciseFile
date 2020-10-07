@@ -11,12 +11,39 @@ import SafetyProgram from "./SafetyProgram"
 import Preparation from "./Preparation"
 import { SignupSchema } from '../Validation/CustomInputComponents';
 import MenuAppBar from "./AppBar"
+import { yellow } from "@material-ui/core/colors";
+import { styled} from "@material-ui/styles";
+import Avatar from "@material-ui/core/Avatar";
+import Done from "@material-ui/icons/Done";
 
-const useStyles = makeStyles({
+
+
+
+export const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: 'black',
+    backgroundColor: "transparent",
+    "& .MuiStepLabel-active": {
+      color: "yellow"
+    },
+    "&.Mui-disabled .MuiStepLabel-label": {
+      color: "white"
+    }
+    
+  },
+  stepLabel: {
+    color: "#1488CC",
+    backgroundColor: 'yellow.A700'
+  },
+  avatar: {
+    width: "1.5em",
+    height: "1.5em",
+    backgroundColor: yellow.A700
+  },
+  lineVertical: {
+    padding: "8px 0px",
+    marginLeft: 14
   }
-})
+}));
 
 
 
@@ -38,7 +65,7 @@ export default function Home() {
             //exerciseBy: '',  autofill current user from session
             exerciseOOB: '',
             exercisePOD: '',
-            exerciseType: '', // options should be pull from db
+            exerciseType: 'Urban warfare', // options should be pull from db
             exerciseLive: '',
             fieldApprove: '', // options should be pull from db
             fileApprove: '', // options should be pull from db
@@ -119,7 +146,8 @@ export function FormikStep({ children }: FormikStepProps) {
 
 //FormikStepper this is wrapper to Formik
 export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>) {
-  //get childrenArray 
+  const classes = useStyles();
+
   const childrenArray = React.Children.toArray(children) as React.ReactElement<FormikStepProps>[];
   //Step Hooks
   const [step, setStep] = useState(0);
@@ -128,7 +156,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
   console.log(childrenArray )
   //completed Hooks
   const [completed, setCompleted] = useState(false);
-
+  
   function isLastStep() {
     return step === childrenArray.length - 1;
   }
@@ -153,10 +181,19 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
     >
       {({ isSubmitting }) => (
         <Form autoComplete="off" >
-          <Stepper alternativeLabel activeStep={step} style={{backgroundColor: '#17202A' ,color:"ffffff"}}>
+          <Stepper alternativeLabel
+                   activeStep={step}
+                    className={classes.root}>
             {childrenArray.map((child, index) => (
-              <Step key={child.props.label} completed={step > index || completed}>
-                <StepLabel  style={{color:"ffffff"}}>{child.props.label}</StepLabel>
+              <Step  className={classes.root} key={child.props.label} completed={step > index || completed}>
+                <StepLabel className={classes.root}
+                                icon={
+                                  <Avatar className={classes.avatar} >
+                                    {step<index+1 ? index+1 : <Done fontSize="small"/>}
+                                  </Avatar>
+                                }
+                
+                >{child.props.label}</StepLabel>
               </Step>
             ))}
           </Stepper>
@@ -165,23 +202,23 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
           
           <Grid container spacing={2}>
             {step > 0 ? (
-              <Grid item>
+              <Grid item >
                 <Button
                   disabled={isSubmitting}
                   variant="contained"
-                  color="primary"
+                  color="inherit"
                   onClick={() => setStep((s) => s - 1)}
                 >
                   Back
                 </Button>
               </Grid>
             ) : null}
-            <Grid item>
+            <Grid item >
               <Button
                 startIcon={isSubmitting ? <CircularProgress size="1rem" /> : null}
                 disabled={isSubmitting}
                 variant="contained"
-                color="primary"
+                color="inherit"
                 type="submit"
               >
                 {isSubmitting ? 'Submitting' : isLastStep() ? 'Submit' : 'Next'}
