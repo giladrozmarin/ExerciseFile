@@ -1,0 +1,48 @@
+PREFIX : <http://api.stardog.com/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+:Terrain a rdfs:Class ;
+   rdfs:label "Terrain" ;
+   rdfs:comment "A Terrain." .
+       
+:Urban-Warfare a rdfs:Class ;
+   rdfs:label "Urban-Warfare" ;
+   rdfs:comment "An urban warfare." ;
+   rdfs:subClassOf :Terrain .
+       
+:TransportVehicle a rdfs:Class ;
+   rdfs:label "TransportVehicle" ;
+   rdfs:comment "A Transport Vehicle." .
+
+:AFV a rdfs:Class ;
+   rdfs:label "AFV" ;
+   rdfs:comment "An Armoured fighting vehicle; type of transport vehicle." ;
+   rdfs:subClassOf :TransportVehicle .
+
+:APC a rdfs:Class ;
+   rdfs:label "APC" ;
+   rdfs:comment "An Armoured transport vehicle; type of AFV." ;
+   rdfs:subClassOf :AFV .
+
+:cantUse a rdfs:Property ;
+   rdfs:label "Cant Use APC in terrain" ;
+   rdfs:comment "An Armoured transport vehicle; type of AFV." .
+
+:Truck a rdfs:Class ;
+   rdfs:label "Truck" ;
+   rdfs:comment "A truck; type of transport vehicle." ;
+   rdfs:subClassOf :TransportVehicle .
+
+:name a rdf:Property ;
+   rdfs:label "name" ;
+   rdfs:comment "The name of an entity." ;
+   rdfs:range xsd:string .
+
+:seats a rdf:Property ;
+   rdfs:label "seats" ;
+   rdfs:comment "Number of seats in a vehicle" ;
+   rdfs:domain :TransportVehicle ;
+   rdfs:range :xsd:integer .
+

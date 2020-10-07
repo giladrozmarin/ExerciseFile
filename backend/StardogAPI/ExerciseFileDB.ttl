@@ -1,0 +1,58 @@
+PREFIX : <http://api.stardog.com/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+:Urban-warfare a :Terrain;
+   :cantuse :APC .
+       
+:Hummer a :AFV ;
+   :name "Hummer" ;
+   :seats 5 .
+
+:M-113 a :APC ;
+   :name "M-113" ;
+   :seats 6 .
+
+:BMP-1 a :APC ;
+   :name "BMP-1" ;
+   :seats 5 .
+
+# :Song a rdfs:Class ;
+#    rdfs:label "Song" ;
+#    rdfs:comment "A music recording that is a single work of music." .
+
+# :Songwriter a rdfs:Class ;
+#    rdfs:label "Songwriter" ;
+#    rdfs:comment "A person or a group of people who participated in the creation of song as a composer or a lyricist." ;
+#    rdfs:subClassOf :Person .
+
+# :date a rdf:Property ;
+#    rdfs:label "date" ;
+#    rdfs:comment "The release date of an album." ;
+#    rdfs:domain :Album ;
+#    rdfs:range xsd:date .
+
+# :artist a rdf:Property ;
+#    rdfs:label "artist" ;
+#    rdfs:comment "The artist that performed this album." ;
+#    rdfs:domain :Album ;
+#    rdfs:range :Artist .
+
+# :track a rdf:Property ;
+#    rdfs:label "track" ;
+#    rdfs:comment "A song included in an album." ;
+#    rdfs:domain :Album ;
+#    rdfs:range :Song .
+
+# :writer a rdf:Property ;
+#    rdfs:label "writer" ;
+#    rdfs:comment "A person or a group of people who participated in the creation of song as a composer or a lyricist." ;
+#    rdfs:domain :Song ;
+#    rdfs:range :Songwriter .
+
+# :length a rdf:Property ;
+#    rdfs:label "length" ;
+#    rdfs:comment "The length of a song in the album expressed in seconds." ;
+#    rdfs:domain :Song ;
+#    rdfs:range xsd:integer .
