@@ -1,50 +1,85 @@
 const Engine = require('./node_modules/json-rules-engine').Engine
 const Rule = require('./node_modules/json-rules-engine').Rule
 const fs = require('fs');
+const file = require('./json-rules.json')
 
-let engine;
 
-function setup(){
- engine = new Engine();
-}
 
-// dic = { "cantuse": {operator: 'greaterThanInclusive', value: 0}}
-//  [ { p: 'cantuse', s: 'Urban-warfare', o: 'APC' } ]
-// { p: 'type', s: 'M-113', o: 'APC' },
-// { p: 'type', s: 'BMP-1', o: 'APC' },
-function addRule(cond1, cond2, pred){
+module.exports = class RuleEngine {
+    
 
-let options = {
-    conditions: {
-        any: [{
-            all: [{
-                fact: cond1.fact,
-                operator: cond1.operator,
-                value: cond1.value
-            },
-            {
-                fact: cond2.fact,
-                operator:  dic[pred].operator,
-                value:  dic[pred].value
-            }]
-        }]
-    },
-    event: {  // define the event to fire when the conditions evaluate truthy
-        type: 'Urban-warfarecantuseM113',
-        params: {
-            message: 'Urban-warfare cant use M113'
-        }
+    
+
+    
+    constructor(){
+        this.engine = new Engine(this.readRules());
+        this.ruleCount = 0;
     }
+   
+    readRules(){
+        let jsonString =
+        JSON.parse(fs.readFileSync('${file}'));
+
+
+        2
+      return  result = Object.entries(jsonString);
+      
+
+    }
+
+    addRule(conditions, evt){
+    let options;
+   conditions.foreach(condition =>{
+        options.conditions.any.all.push(
+            {fact: condition.fact,
+              operator:  condition.fact,
+              value: condition.value }
+        )
+    })
+
+    options.event = {  // define the event to fire when the conditions evaluate truthy
+        type: evt.type,
+        params: {
+            message: evt.msg
+        }
+
+// let options = {
+//     conditions: {
+//         any: [{
+//             all: [{
+//                 fact: cond1.fact,
+//                 operator: cond1.operator,
+//                 value: cond1.value
+//             },
+//             {
+//                 fact: cond2.fact,
+//                 operator:  dic[pred].operator,
+//                 value:  dic[pred].value
+//             }]
+//         }]
+//     },
+//     event: {  // define the event to fire when the conditions evaluate truthy
+//         type: 'Urban-warfarecantuseM113',
+//         params: {
+//             message: 'Urban-warfare cant use M113'
+//         }
+//     }
 };
+
+ 
 
 let rule = new Rule(options)
 
-engine.addRule(rule)
+this.engine.addRule(rule)
+let count = ++this.ruleCount
+
+newRule ={count : rule}
+let jsonString = rule.toJSON()
 }
 
 // Run the engine to evaluate
-function checkRules(facts, callback){
-engine
+ checkRules(facts, callback){
+    this.engine
     .run(facts)
     .then(results => {
         errors = []
@@ -54,11 +89,10 @@ engine
     })
 }
 
-let jsonString = rule.toJSON()
-fs.writeFile("json-rules.json", jsonString, function (err) {
-    if (err) {
-        console.log(err);
-    }
-});
-
-module.exports = { setup,addRule,checkRules }
+// let jsonString = rule.toJSON()
+ //fs.writeFile("json-rules.json", jsonString, function (err) {
+  //  if (err) {
+   //     console.log(err);
+//     }
+// });
+}

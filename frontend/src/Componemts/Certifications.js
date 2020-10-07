@@ -67,7 +67,7 @@ const Certifications = () => {
                                            
                                             <Field
                                                 label="Exercise name"
-                                                component ={TextField}
+                                                component ={TextField }
                                                 name={"exerciseName"}
                                                 type="text"
                                                 outline

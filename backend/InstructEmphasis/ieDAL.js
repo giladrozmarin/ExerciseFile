@@ -1,11 +1,15 @@
 
-const addRule = require('..RuleEngine/engine');
-
+const Engine = require('../index').Engine;
 
 function CheckRules(facts, callback) {
-    var retval;
 
-    callback(engineRes)
+    Engine.checkRules(facts, function (errors){
+        let retval = {engineRes: 'success'}
+        if(errors.length > 0){
+            retval = errors;
+        }
+        callback(retval)
+    })
 }
 
 module.exports = { CheckRules }
