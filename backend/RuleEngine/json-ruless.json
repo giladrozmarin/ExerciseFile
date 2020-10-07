@@ -1,0 +1,24 @@
+{
+    "conditions": {
+        "priority": 1,
+        "any": [{
+            "priority": 1,
+            "all": [{
+                "operator": "equal",
+                "value": "Urban-warfare",
+                "fact": "terrain"
+            }, {
+                "operator": "greaterThanInclusive",
+                "value": 0,
+                "fact": "M113"
+            }]
+        }]
+    },
+    "priority": 1,
+    "event": {
+        "type": "Urban-warfarecantuseM113",
+        "params": {
+            "message": "Urban-warfare cant use M113"
+        }
+    }
+}

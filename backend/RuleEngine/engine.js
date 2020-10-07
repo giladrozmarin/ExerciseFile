@@ -1,7 +1,7 @@
 const Engine = require('./node_modules/json-rules-engine').Engine
 const Rule = require('./node_modules/json-rules-engine').Rule
 const fs = require('fs');
-const file = require('./json-rules.json')
+ 
 
 
 
@@ -17,14 +17,17 @@ module.exports = class RuleEngine {
     }
    
     readRules(){
-        let jsonString =
-        JSON.parse(fs.readFileSync('${file}'));
-
-
-        
-      return  result = Object.entries(jsonString);
+       // let jsonString =
+        //JSON.parse(fs.readFileSync('${file}'));
+        //return  result = Object.entries(jsonString);
       
-
+        fs.readFile('./backend/RuleEngine/json-ruless.json', 'utf8', (err, jsonString) => {
+            if (err) {
+                console.log("File read failed:", err)
+                return
+            }
+            console.log('File data:', jsonString) 
+        })
     }
 
     addRule(conditions, evt){
