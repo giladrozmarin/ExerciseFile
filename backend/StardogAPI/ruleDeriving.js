@@ -2,7 +2,9 @@ const { rdfVoc, linksVoc, operatorDic } = require('./vocabulary')
 const { exequery } = require('./stardog');
 const observer = require('./fileObserver');
 const path = require('path');
-const Engine = require('../index').Engine;
+const RuleEngine = require('../RuleEngine/engine').RuleEngine
+
+const Engine = new RuleEngine();
 
 let filePath = path.join(__dirname, 'ExerciseFileDB.ttl');
 observer.observeFile(filePath, onFileChange)
@@ -63,7 +65,7 @@ function getLinks() {
                         conditions.push(mainCondition)
                         conditions.push(condition)
                         evt.message = link.s + '' + link.p + '' + type.o;
-                        evt.message = link.s + ' ' + link.p + ' ' + type.o;
+                        evt.message = link.s + ' ' + operatorDic[link.p].message + ' ' + type.o;
                         Engine.addRule(conditions, evt)
                     }
                 })

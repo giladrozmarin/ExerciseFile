@@ -6,7 +6,7 @@
                 "priority": 1,
                 "all": [{
                     "operator": "equal",
-                    "value": "Urban-warfare",
+                    "value": "Urban warfare",
                     "fact": "terrain"
                 }, {
                     "operator": "greaterThanInclusive",
@@ -20,6 +20,31 @@
             "type": "Urban-warfarecantuseM113",
             "params": {
                 "message": "Urban-warfare cant use M113"
+            }
+        }
+    },
+
+    "2": {
+        "conditions": {
+            "priority": 1,
+            "any": [{
+                "priority": 1,
+                "all": [{
+                    "operator": "equal",
+                    "value": "Urban warfare",
+                    "fact": "terrain"
+                }, {
+                    "operator": "greaterThanInclusive",
+                    "value": 0,
+                    "fact": "BMP-1"
+                }]
+            }]
+        },
+        "priority": 1,
+        "event": {
+            "type": "Urban-warfarecantuseM113",
+            "params": {
+                "message": "Urban-warfare cant use BMP-1"
             }
         }
     }
