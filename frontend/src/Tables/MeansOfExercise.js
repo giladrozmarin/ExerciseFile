@@ -25,6 +25,11 @@ function MeansOfExercise(props) {
             else {
 
               errors = response.data
+              let errorString = "";
+              for (let i = 0; i < errors.length; i++) {
+                errorString += "\n" + (i + 1) + ") " + errors[i];
+              }
+              alert("The following rules has been violated:" + errorString)
               myErrors(errors)
               reject(myErrors(errors))
             }

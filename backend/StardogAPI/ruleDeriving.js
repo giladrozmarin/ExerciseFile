@@ -70,7 +70,7 @@ function getLinks() {
                         conditions.push(mainCondition)
                         conditions.push(condition)
                         evt.type = link.s + '' + link.p + '' + type.o;
-                        evt.msg = link.s + ' ' + operatorDic[link.p].message + ' ' + type.o;
+                        evt.msg = link.s + ' ' + operatorDic[link.p].message + ' ' + type.s;
                         // console.log(conditions);
                         rule = Engine.addRule(conditions, evt)
                         rules.push(rule);
