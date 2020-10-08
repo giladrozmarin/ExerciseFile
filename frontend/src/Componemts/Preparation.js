@@ -3,14 +3,16 @@ import { useFormikContext, Field } from 'formik'
 import Obdeatail from "../Tables/Obdeatail.js"
 import { TextField } from "formik-material-ui"
 import SignatureCanvas from 'react-signature-canvas'
+import { Card, CardContent } from '@material-ui/core'
 
 function Preparation() {
 
     return (
-        <>
+        
+        <Card style={{backgroundColor:'#ffff99'}}> \<p className="h1 text-center" style={{ paddingTop: "10px", fontWeight: "bold" }}>Preparation</p>
             <Obdeatail />
 <span>
-            <h5>This exercise made by:</h5>
+            <h5  style={{ paddingTop: "8px", fontWeight: "bold" }}>This exercise made by:</h5>
             <Field
                 label="rank"
                 component={TextField}
@@ -29,13 +31,13 @@ function Preparation() {
                 name={"lastname"}
                 type="text"
             />
-            <h6>sign here </h6>
+            <h6 style={{ paddingTop: "6px", fontWeight: "bold" }}>sign here </h6>
             <SignatureCanvas penColor='black' style= {{borderStyle: "double" }}
     canvasProps={{width: 300, height: 75,className: 'sigCanvas'}} />
          <reactSignatureCanvas />   
             
 </span>
-        </>
+        </Card>
 
     )
 

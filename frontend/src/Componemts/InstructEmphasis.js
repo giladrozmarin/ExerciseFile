@@ -3,13 +3,13 @@ import { Field, useFormikContext } from "formik";
 import {TextField} from "formik-material-ui";
 import CellEditable from "../Tables/CellEditable.js";
 import MeansOfExercise from "../Tables/MeansOfExercise.js"
-
+import { Card, CardContent} from '@material-ui/core'
 const InstrucEmphasis = () => {
 
   const { values } = useFormikContext()
   const { exerciseGoal, exerciseSubject } = values
   return (
-
+    <Card style={{backgroundColor:'#ffff99'}}> 
     <form autoComplete="off">
 
       <p className="h1 text-center" style={{ paddingTop: "10px", fontWeight: "bold" }}>Instructional emphasis</p>
@@ -34,7 +34,7 @@ const InstrucEmphasis = () => {
       </div>
 
     </form>
-
+</Card>
 
 
 

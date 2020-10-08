@@ -181,7 +181,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
       
     >
       {({ isSubmitting }) => (
-        <Form autoComplete="off" >
+        <Form autoComplete="off" style={{position: "relative"}} >
           <Stepper alternativeLabel
                    activeStep={step}
                     className={classes.root}>
@@ -193,6 +193,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
                                     {step<index+1 ? index+1 : <Done fontSize="small"/>}
                                   </Avatar>
                                 }
+
                 
                 >{child.props.label}</StepLabel>
               </Step>

@@ -65,7 +65,7 @@ const Certifications = () => {
                                         <div className="Certifications">
                          
                                            
-                                            <Field
+                                            <MDBInput
                                                 label="Exercise name"
                                                 component ={TextField }
                                                 name={"exerciseName"}
@@ -148,7 +148,7 @@ const Certifications = () => {
                                                 size="lg"
                                               //  {...formik.getFieldProps('artilleryApprove')}
                                             />
-                                            <Field
+                                            <MDBInput
                                                 label="exerciseManager"
                                                 name="exerciseManager"
                                                 type="text"
@@ -206,14 +206,14 @@ const Certifications = () => {
 
                                             </div>
 
+                                            <div className="text-center">
+                                             {/}<MDBBtn type="submit" color="yellow">Send</MDBBtn>
+                                            </div>
                                             */}                
 
 
 
 
-                                            <div className="text-center">
-                                                <MDBBtn type="submit" color="yellow">Send</MDBBtn>
-                                            </div>
                                         </div >
                                     </form >
                                 </div>

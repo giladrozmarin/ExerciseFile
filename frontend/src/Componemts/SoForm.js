@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {TextField} from "formik-material-ui"
 import { Field,ErrorMessage } from 'formik';
+
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, mdbWavesEffect } from 'mdbreact';
 import { useFormikContext } from "formik";
 import { Card, CardContent } from '@material-ui/core'
@@ -15,7 +16,6 @@ import reactSignatureCanvas from '../Wrapper/reactSignatureCanvas'
  
 
 const SoForm = () => {
-
 
   const { values } = useFormikContext()
   const { exerciseManager,exerciseName } = values
@@ -34,10 +34,11 @@ const SoForm = () => {
     }, [])
 
   return (
-    <>
+    
+    <Card style={{ position: "center" ,width:"100%"}} >
     <p className="h1 text-center" style={{ paddingTop: "10px", fontWeight: "bold" }}>Appointment of SO Form</p>
-      <p>From: {exerciseManager}</p>
-      <p>To: </p>
+      <p style={{ paddingLeft: "15px", fontWeight: "bold" , fontSize: '20px'}}>From: {exerciseManager}</p>
+      <p style={{ paddingLeft: "15px", fontWeight: "bold" , fontSize: '20px'}}>To: </p>
                                                   {/*Safety Manager list*/}
                                                   <MDBInput
                                                 label="safetyManager"
@@ -53,10 +54,10 @@ const SoForm = () => {
                                                         {option.rank + " " + option.firstName + " " + option.lastName}
                                                     </option>)}
                                             </datalist>
-     <p>You are appointed  to SO at :{exerciseName} </p>  
-     <p> This appointment requires you to be an instructor, supervisor and advisor to the commander<br />
+    <p className="text-center" style={{ paddingLeft: "10px", fontWeight: "bold" , fontSize: '20px'}}>You are appointed  to SO at :{exerciseName} </p>  
+     <p className="text-center" style={{paddingTop: "20px",color:"red", coposition:"center", fontWeight: "bold" , fontSize: '20px'}} >This appointment requires you to be an instructor, supervisor and advisor to the commander<br />
          in charge director of the exercise based on the safety instructions in the training in force</p>   
-         <p> Validity </p>  
+         <p style={{ paddingLeft: "10px",paddingTop: "100px", fontWeight: "bold" , fontSize: '15px'}}>Validity Dates </p>  
          From: 
          <Field name="startDate" component={DatePickerWrapper} />
          <ErrorMessage name="startDate" />
@@ -65,11 +66,14 @@ const SoForm = () => {
           <ErrorMessage name="startDate" />
           <br/>
           
-<p>Exercise manager signature:</p>
+          <p  style={{ paddingLeft: "10px",paddingTop: "30px", fontWeight: "bold" , fontSize: '15px'}}>Exercise manager signature:</p>
 <SignatureCanvas penColor='black'
     canvasProps={{width: 500, height: 75, className: 'sigCanvas'}} />
-         <reactSignatureCanvas />                 
-    </>
+         <reactSignatureCanvas />    
+
+
+         </Card>
+    
   )
 }
 export default SoForm;
