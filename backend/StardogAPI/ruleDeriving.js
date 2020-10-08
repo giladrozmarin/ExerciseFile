@@ -103,5 +103,3 @@ function beautifyValue(str, char) {
 }
 
 module.exports = { getLinks }
-
-
