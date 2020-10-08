@@ -3,11 +3,50 @@ import React, { useState, useEffect } from 'react'
 import MaterialTable, { MTableEditRow, MTableEditField } from "material-table"
 import axios from 'axios';
 import { useFormikContext } from 'formik'
+import myErrors from './myErrors'
+
 
 function MeansOfExercise(props) {
 
+
+function fetch (newData,oldData){
+  return(
+  axios.post('/api/InstructEmphasis/MeansOfExercise', newData) 
+  .then((response) => {
+
+        const myP=   new Promise((resolve, reject) => {
+               if(response.data[0]== null)
+               {
+              const dataUpdate = [...data];
+              const index = oldData.tableData.id;
+              dataUpdate[index] = newData;
+              setData([...dataUpdate]);  
+              resolve();
+               }
+              else
+              { 
+               
+                errors= response.data
+                myErrors(errors)
+                reject(myErrors(errors))
+              }
+               
+            }
+            
+            )},
+            
+
+         
+  )
+  )
+}
+
+ 
+
+
   const { values } = useFormikContext()
   const { exerciseType } = values
+  let errors = "check"
   const [columns, setColumns] = useState([
     {
       title: 'Unit Name', field: 'unit', editable: "never",
@@ -27,6 +66,7 @@ function MeansOfExercise(props) {
     { title: 'Rocket', field: 'Rocket', type: 'numeric' },
     { title: 'Artilley', field: 'Artilley', type: 'numeric' },
     { title: 'light vehicle', field: 'light vehicle', type: 'numeric' },
+ 
   ]);
 
   const [data, setData] = useState([
@@ -37,6 +77,11 @@ function MeansOfExercise(props) {
   ]);
 
   return (
+    <>
+  
+    <myErrors/>
+   
+   
     <MaterialTable
       title="Means Of Exercise"
       columns={columns}
@@ -51,25 +96,17 @@ function MeansOfExercise(props) {
             }, 1000)
           }),
 
-        onRowUpdate: (newData, oldData) => {
-          newData.terrain = exerciseType;
-
-          axios.post('/api/InstructEmphasis/MeansOfExercise', newData)
-            .then(function (response) {
-
-              console.log(response)
-              const dataUpdate = [...data];
-              const index = oldData.tableData.id;
-              dataUpdate[index] = newData;
-              setData([...dataUpdate]);
-            })
-            .catch(function (error) {
-              console.log(error);
-            })
-        },
+          onRowUpdate: (newData, oldData) =>
+          fetch(newData, oldData).then
+          (   
+          )
+         
       }}
     />
+ 
+    </>
   )
 }
+
 
 export default MeansOfExercise

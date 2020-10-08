@@ -81,7 +81,8 @@ export default function Home() {
             ofb:'',
             rank:'',
             firstName:'',
-            lastname:''
+            lastname:'',
+            errors:'',
           }}
           onSubmit={async (values) => {
             await sleep(3000);
@@ -116,7 +117,7 @@ export default function Home() {
             </Box>
           </FormikStep>
 
-          <FormikStep label="Safety Program">
+          <FormikStep label="Preparation">
             <Box paddingBottom={2}>
             <Preparation />
             </Box>
