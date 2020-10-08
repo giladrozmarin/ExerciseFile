@@ -1,1 +1,1 @@
-[]
+[{"conditions":{"priority":1,"any":[{"priority":1,"all":[{"operator":"equal","value":"Urban-warfare","fact":"Terrain"},{"operator":"greaterThan","value":0,"fact":"M-113"}]}]},"priority":1,"event":{"type":"Urban-warfarecantuseAPC","params":{"message":"Urban-warfare cant use APC"}}},{"conditions":{"priority":1,"any":[{"priority":1,"all":[{"operator":"equal","value":"Urban-warfare","fact":"Terrain"},{"operator":"greaterThan","value":0,"fact":"BMP-1"}]}]},"priority":1,"event":{"type":"Urban-warfarecantuseAPC","params":{"message":"Urban-warfare cant use APC"}}}]

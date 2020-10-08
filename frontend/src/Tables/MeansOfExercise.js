@@ -9,39 +9,38 @@ import myErrors from './myErrors'
 function MeansOfExercise(props) {
 
 
-function fetch (newData,oldData){
-  return(
-  axios.post('/api/InstructEmphasis/MeansOfExercise', newData) 
-  .then((response) => {
+  function fetch(newData, oldData) {
+    return (
+      axios.post('/api/InstructEmphasis/MeansOfExercise', newData)
+        .then((response) => {
 
-        const myP=   new Promise((resolve, reject) => {
-               if(response.data[0]== null)
-               {
+          const myP = new Promise((resolve, reject) => {
+            if (response.data[0] == null) {
               const dataUpdate = [...data];
               const index = oldData.tableData.id;
               dataUpdate[index] = newData;
-              setData([...dataUpdate]);  
+              setData([...dataUpdate]);
               resolve();
-               }
-              else
-              { 
-               
-                errors= response.data
-                myErrors(errors)
-                reject(myErrors(errors))
-              }
-               
             }
-            
-            )},
-            
+            else {
 
-         
-  )
-  )
-}
+              errors = response.data
+              myErrors(errors)
+              reject(myErrors(errors))
+            }
 
- 
+          }
+
+          )
+        },
+
+
+
+        )
+    )
+  }
+
+
 
 
   const { values } = useFormikContext()
@@ -66,7 +65,7 @@ function fetch (newData,oldData){
     { title: 'Rocket', field: 'Rocket', type: 'numeric' },
     { title: 'Artilley', field: 'Artilley', type: 'numeric' },
     { title: 'light vehicle', field: 'light vehicle', type: 'numeric' },
- 
+
   ]);
 
   const [data, setData] = useState([
@@ -78,32 +77,32 @@ function fetch (newData,oldData){
 
   return (
     <>
-  
-    <myErrors/>
-   
-   
-    <MaterialTable
-      title="Means Of Exercise"
-      columns={columns}
-      data={data}
-      editable={{
-        onRowAdd: newData =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              setData([...data, newData]);
 
-              resolve();
-            }, 1000)
-          }),
+      <myErrors />
+
+
+      <MaterialTable
+        title="Means Of Exercise"
+        columns={columns}
+        data={data}
+        editable={{
+          onRowAdd: newData =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                setData([...data, newData]);
+
+                resolve();
+              }, 1000)
+            }),
 
           onRowUpdate: (newData, oldData) =>
-          fetch(newData, oldData).then
-          (   
-          )
-         
-      }}
-    />
- 
+            fetch(newData, oldData)
+              .then(
+              )
+
+        }}
+      />
+
     </>
   )
 }
