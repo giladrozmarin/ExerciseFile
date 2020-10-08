@@ -1,6 +1,5 @@
 const fs = require('fs');
 const md5 = require('md5');
-require('log-timestamp');
 
 function observeFile(file, callback) {
     let md5Previous = null;

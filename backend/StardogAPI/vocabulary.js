@@ -1,5 +1,3 @@
-
-
 const rdfVoc = ['comment', 'label']
 
 const linksVoc = ['cantuse', 'max']
@@ -16,4 +14,4 @@ const operatorDic = { "cantuse": { operator: 'greaterThanInclusive', value: 0, m
                     operator: condition.fact,
                     value: condition.value
 */
-module.exports = { rdfVoc, linksVoc }
+module.exports = { rdfVoc, linksVoc, operatorDic }
