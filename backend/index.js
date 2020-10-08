@@ -2,11 +2,14 @@ const express = require('express');
 const app = express();
 const port = 5000;
 
-const loginController = require('./loginpage/loginController')
+const loginController = require('./loginpage/loginController');
 const certController = require('./certifications/certController');
-const soFormController = require('./soForm/soFormController')
-const ieController = require('./InstructEmphasis/ieController')
-const RuleEngine = require('./RuleEngine/engine').RuleEngine
+const soFormController = require('./soForm/soFormController');
+const ieController = require('./InstructEmphasis/ieController');
+const RuleEngine = require('./RuleEngine/engine').RuleEngine;
+const stardog = require('./StardogAPI/ruleDeriving');
+
+stardog.getLinks();
 
 //RuleEngine setUp
 const Engine = new RuleEngine();

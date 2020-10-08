@@ -79,7 +79,7 @@ function getLinks() {
                 })
             })
 
-            var jsonPath = path.join(__dirname, 'json-rules.json');
+            var jsonPath = path.join(__dirname, '..', '..', 'rules', 'json-rules.json');
             let jsonString = JSON.stringify(rules)
             console.log(JSON.parse(jsonString))
 
@@ -102,7 +102,6 @@ function beautifyValue(str, char) {
     return str.substring(str.lastIndexOf(char) + 1);
 }
 
-getLinks()
-
+module.exports = { getLinks }
 
 
