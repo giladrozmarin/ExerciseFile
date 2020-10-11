@@ -1,5 +1,5 @@
 const { rdfVoc, linksVoc, operatorDic } = require('./vocabulary')
-const { exequery } = require('./stardog');
+const { exeQuery, createDB, dropDB } = require('./stardog');
 const observer = require('./fileObserver');
 const path = require('path');
 const fs = require('fs');
@@ -9,7 +9,11 @@ const queries = require('../queries');
 const Engine = new RuleEngine();
 
 let onFileChange = () => {
-    ruleDeriving()
+    dropDB(function (body) {
+        createDB(function (body) {
+            ruleDeriving()
+        })
+    })
 }
 
 let filePath = path.join(__dirname, 'ExerciseFileDB.ttl');
@@ -35,7 +39,7 @@ function ruleDeriving() {
 }
 
 function getLinks(callback) {
-    exequery(
+    exeQuery(
         ({ body }) => {
             let filtered = body.results.bindings.filter(trio => {
                 trio = beautifyTrio(trio);
@@ -131,7 +135,7 @@ function typesToMongo() {
     queries.dropCollection('Types', function (isExist) {
         if (isExist) {
             queries.insertMany(types, 'Types', function (dbRes) {
-                console.log('success');
+                console.log('insert many succeeded');
             })
         } else
             console.log('collection not exist');
