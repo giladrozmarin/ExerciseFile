@@ -40,19 +40,19 @@ function dropCollection(collection, callback) {
         let dbo = db.db(DB_PARAMS.DB);
 
         dbo.listCollections().toArray(function (err, collInfos) {
-            // collInfos is an array of collection info objects that look like:
-            // { name: 'test', options: {} }
-            collInfos.filter(coll => coll.name === collection).length > 0 ? callback(true) : callback(false);
-
+            if (collInfos.filter(coll => coll.name === collection).length > 0) {
+                dbo.collection(collection).drop(function (err, delOK) {
+                    if (err) throw err;
+                    if (delOK) console.log("Collection deleted");
+                    callback(true);
+                    db.close();
+                });
+            } else {
+                callback(false);
+            }
         });
     })
-    //     dbo.collection(collection).drop(function (err, delOK) {
-    //         if (err) throw err;
-    //         if (delOK) console.log("Collection deleted");
-    //         callback();
-    //         db.close();
-    //     });
-    // });
+
 }
 
 module.exports = { insertOne, insertMany, dropCollection }
