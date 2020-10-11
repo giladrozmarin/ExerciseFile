@@ -5,9 +5,7 @@ import axios from 'axios';
 import { useFormikContext } from 'formik'
 import myErrors from './myErrors'
 
-
 function MeansOfExercise(props) {
-
 
   function fetch(newData, oldData) {
     return (
@@ -33,20 +31,10 @@ function MeansOfExercise(props) {
               myErrors(errors)
               reject(myErrors(errors))
             }
-
-          }
-
-          )
+          })
         },
-
-
-
-        )
-    )
+        ))
   }
-
-
-
 
   const { values } = useFormikContext()
   const { exerciseType } = values
@@ -65,8 +53,8 @@ function MeansOfExercise(props) {
     { title: 'Self-propelled gun', field: 'gun', type: 'numeric' },
     { title: 'M548', field: 'M548', type: 'numeric' },
     { title: 'Track', field: 'Track', type: 'numeric' },
-    { title: 'M113', field: 'M113', type: 'numeric' },
-    { title: 'BMP-1', field: 'BMP_1', type: 'numeric' },
+    { title: 'M-113', field: 'M-113', type: 'numeric' },
+    { title: 'BMP-1', field: 'BMP-1', type: 'numeric' },
     { title: 'Rocket', field: 'Rocket', type: 'numeric' },
     { title: 'Artilley', field: 'Artilley', type: 'numeric' },
     { title: 'light vehicle', field: 'light vehicle', type: 'numeric' },
@@ -82,9 +70,7 @@ function MeansOfExercise(props) {
 
   return (
     <>
-
       <myErrors />
-
 
       <MaterialTable
         title="Means Of Exercise"
@@ -107,10 +93,8 @@ function MeansOfExercise(props) {
 
         }}
       />
-
     </>
   )
 }
-
 
 export default MeansOfExercise
