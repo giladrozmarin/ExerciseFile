@@ -49,8 +49,13 @@ const MOE = {
     TERRAIN: "Terrain"
 
 };
+const TYPE = {
+    SERVER_URL: "mongodb+srv://" + userName + ":" + password + "@exercisefile-nav1h.gcp.mongodb.net/test?retryWrites=true&w=majority",
+    DB: "exercideFileDB",
+    TYPE: "Types",
+
+};
 
 
 
-
-module.exports = { PARAMS, USER, MOE }
+module.exports = { PARAMS, USER, MOE,TYPE }

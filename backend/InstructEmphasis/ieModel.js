@@ -14,8 +14,16 @@ function MeansOfExercise(req, res) {
 
 function MeansOfExerciseData (req, res ){
 
+    let table1Query ='{$or:[{"o":"APC"},{"o":"Truck"},{"o":"Rocket"},{"o":"Artillery"},{"o":"SPG"}]},{s:1}'
 
+   // db.Types.find({$or:[{"o":"APC"},{"o":"Truck"},{"o":"Rocket"},{"o":"Artillery"},{"o":"SPG"}]},{s:1})
 
-}
+    dal.find(table1Query, function (dbRes) {
+         
+        console.log(dbRes);
+        res.send({ MeansOfExerciseData: dbRes, cerRes: 'data table successfully' });
 
-module.exports = { MeansOfExercise }
+    })
+    }
+
+module.exports = { MeansOfExercise,MeansOfExerciseData }

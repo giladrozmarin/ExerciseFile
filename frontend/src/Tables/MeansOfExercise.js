@@ -4,6 +4,7 @@ import MaterialTable, { MTableEditRow, MTableEditField } from "material-table"
 import axios from 'axios';
 import { useFormikContext } from 'formik'
 import myErrors from './myErrors'
+import { keys } from '@material-ui/core/styles/createBreakpoints';
 
 function MeansOfExercise(props) {
 
@@ -44,14 +45,15 @@ function MeansOfExercise(props) {
   useEffect(() =>{
     axios.get('/api/InstructEmphasis/MeansOfExerciseData')
     .then(response => {
-      console.log(response.data)
+      console.log(response.data.MeansOfExerciseData)
         setColumns(response.data.MeansOfExerciseData)
+        console.table(setColumns)
       })
       .catch(err => console.log(err));
   }, [])
     
     
-    
+  
     
   //   [
   //   {
