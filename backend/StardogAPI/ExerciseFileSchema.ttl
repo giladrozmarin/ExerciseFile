@@ -7,10 +7,19 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:label "Terrain" ;
    rdfs:comment "A Terrain." .
        
-:Urban-Warfare a rdfs:Class ;
-   rdfs:label "Urban-Warfare" ;
-   rdfs:comment "An urban warfare." ;
-   rdfs:subClassOf :Terrain .
+:Ammunition a rdfs:Class ;
+   rdfs:label "TransportVehicle" ;
+   rdfs:comment "A Transport Vehicle." .
+
+:Rocket a rdfs:Class ;
+   rdfs:label "Rocket" ;
+   rdfs:comment "; type of transport ammunition." ;
+   rdfs:subClassOf :Ammunition .
+
+:Artillery a rdfs:Class ;
+   rdfs:label "Artillery" ;
+   rdfs:comment "; type of transport ammunition." ;
+   rdfs:subClassOf :Ammunition .
        
 :TransportVehicle a rdfs:Class ;
    rdfs:label "TransportVehicle" ;
@@ -20,6 +29,16 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:label "AFV" ;
    rdfs:comment "An Armoured fighting vehicle; type of transport vehicle." ;
    rdfs:subClassOf :TransportVehicle .
+
+:SPG a rdfs:Class ;
+   rdfs:label "AFV" ;
+   rdfs:comment "An Armoured fighting vehicle with a cannon; type of AFV." ;
+   rdfs:subClassOf :AFV .
+
+:APC a rdfs:Class ;
+   rdfs:label "APC" ;
+   rdfs:comment "An Armoured transport vehicle; type of AFV." ;
+   rdfs:subClassOf :AFV .
 
 :APC a rdfs:Class ;
    rdfs:label "APC" ;

@@ -16,8 +16,12 @@ class RuleEngine {
     }
 
     updateRules(rules) {
-        console.log(rules)
-        this.engine = new Engine(rules)
+        if (rules) {
+            console.log(rules)
+            this.engine = new Engine(rules)
+        } else {
+            this.engine = new Engine();
+        }
     }
 
     addRule(conditions, evt) {

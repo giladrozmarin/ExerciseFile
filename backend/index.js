@@ -9,10 +9,10 @@ const ieController = require('./InstructEmphasis/ieController');
 const RuleEngine = require('./RuleEngine/engine').RuleEngine;
 const stardog = require('./StardogAPI/ruleDeriving');
 
-stardog.getLinks();
+stardog.ruleDeriving();
 
 //RuleEngine setUp
-const Engine = new RuleEngine();
+// const Engine = new RuleEngine();
 
 //handling post requests
 app.use(express.json());

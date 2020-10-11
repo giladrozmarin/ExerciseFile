@@ -5,9 +5,7 @@ import axios from 'axios';
 import { useFormikContext } from 'formik'
 import myErrors from './myErrors'
 
-
 function MeansOfExercise(props) {
-
 
   function fetch(newData, oldData) {
     return (
@@ -33,20 +31,10 @@ function MeansOfExercise(props) {
               myErrors(errors)
               reject(myErrors(errors))
             }
-
-          }
-
-          )
+          })
         },
-
-
-
-        )
-    )
+        ))
   }
-
-
-
 
   const { values } = useFormikContext()
   const { exerciseType } = values
@@ -54,9 +42,10 @@ function MeansOfExercise(props) {
   const [columns, setColumns] = useState();
   
   useEffect(() =>{
-    axios.get('/api/InstructEmphasis/MeansOfExerciseData?collection=Types')
-      .then(result => {
-        setData(result)
+    axios.get('/api/InstructEmphasis/MeansOfExerciseData')
+    .then(response => {
+      console.log(response.data)
+        setColumns(response.data.MeansOfExerciseData)
       })
       .catch(err => console.log(err));
   }, [])
@@ -95,9 +84,7 @@ function MeansOfExercise(props) {
 
   return (
     <>
-
       <myErrors />
-
 
       <MaterialTable
         title="Means Of Exercise"
@@ -120,10 +107,8 @@ function MeansOfExercise(props) {
 
         }}
       />
-
     </>
   )
 }
-
 
 export default MeansOfExercise

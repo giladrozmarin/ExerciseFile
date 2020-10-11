@@ -7,52 +7,29 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    :cantuse :APC .
        
 :Hummer a :AFV ;
-   :name "Hummer" ;
-   :seats 5 .
+   :name "Hummer" .
+
+:M-109 a :SPG ;
+   :name "M-109" .
+
+:M-109A6 a :SPG ;
+   :name "M-109A6" .
 
 :M-113 a :APC ;
-   :name "M-113" ;
-   :seats 6 .
+   :name "M-113" .
 
 :BMP-1 a :APC ;
-   :name "BMP-1" ;
-   :seats 5 .
+   :name "BMP-1" .
 
-# :Song a rdfs:Class ;
-#    rdfs:label "Song" ;
-#    rdfs:comment "A music recording that is a single work of music." .
+:Light-Vehicle a :Truck ;
+   :name "Light-Vehicle" .
 
-# :Songwriter a rdfs:Class ;
-#    rdfs:label "Songwriter" ;
-#    rdfs:comment "A person or a group of people who participated in the creation of song as a composer or a lyricist." ;
-#    rdfs:subClassOf :Person .
+:Truck4 a :Truck ;
+   :name "truck 4 tons" .
 
-# :date a rdf:Property ;
-#    rdfs:label "date" ;
-#    rdfs:comment "The release date of an album." ;
-#    rdfs:domain :Album ;
-#    rdfs:range xsd:date .
+:Artillery-105mm a :Artillery ;
+   :name "Artillery-105mm" .
 
-# :artist a rdf:Property ;
-#    rdfs:label "artist" ;
-#    rdfs:comment "The artist that performed this album." ;
-#    rdfs:domain :Album ;
-#    rdfs:range :Artist .
+:Rocket-109 a :Rocket ;
+   :name "Rocket-109" .
 
-# :track a rdf:Property ;
-#    rdfs:label "track" ;
-#    rdfs:comment "A song included in an album." ;
-#    rdfs:domain :Album ;
-#    rdfs:range :Song .
-
-# :writer a rdf:Property ;
-#    rdfs:label "writer" ;
-#    rdfs:comment "A person or a group of people who participated in the creation of song as a composer or a lyricist." ;
-#    rdfs:domain :Song ;
-#    rdfs:range :Songwriter .
-
-# :length a rdf:Property ;
-#    rdfs:label "length" ;
-#    rdfs:comment "The length of a song in the album expressed in seconds." ;
-#    rdfs:domain :Song ;
-#    rdfs:range xsd:integer .
