@@ -3,11 +3,6 @@ import React from 'react';
 //import SignupForm from './loginPage'
 //import NavbarPage from './loginPage'
 import BackgroundImagePage from './Componemts/homePage'
-import SoForm from './Componemts/SoForm'
-import CellEditable from "./Tables/CellEditable.js"
-import Weather from "./Wrapper/Weather"
-import NeighboringForces from "./Tables/NeighboringForces.js"
-import Preparation from  "./Componemts/Preparation"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import stepper from "./Componemts/Stepper" 
 

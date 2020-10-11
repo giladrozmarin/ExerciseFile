@@ -23,4 +23,10 @@ function MeansOfExercise(req, res) {
     });
 }
 
+function MeansOfExerciseData (req, res ){
+
+
+
+}
+
 module.exports = { MeansOfExercise }

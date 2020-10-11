@@ -31,8 +31,8 @@ const Certifications = () => {
             .then(response => {
                 console.log(response.data)
                 setFieldApproveOptions(response.data.fieldApproveOptions)
-            }
-            ).catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
     }, [])
   
     const formik = useFormik({

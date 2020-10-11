@@ -17,8 +17,6 @@ const queryString = 'select distinct ?s ?p ?o where { ?s ?p ?o }'
 function exequery(callback) {
     query.execute(conn, db, queryString, queryOption, queryParams).then((body) => callback(body));
 
-
-
 }
 
 

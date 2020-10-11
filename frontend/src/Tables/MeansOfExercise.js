@@ -51,27 +51,40 @@ function MeansOfExercise(props) {
   const { values } = useFormikContext()
   const { exerciseType } = values
   let errors = "check"
-  const [columns, setColumns] = useState([
-    {
-      title: 'Unit Name', field: 'unit', editable: "never",
-      editComponent: props => (
-        <input
-          type="text"
-          value={props.value}
-          onChange={e => props.onChange(e.target.value)}
-        />
-      )
-    },
-    { title: 'Self-propelled gun', field: 'gun', type: 'numeric' },
-    { title: 'M548', field: 'M548', type: 'numeric' },
-    { title: 'Track', field: 'Track', type: 'numeric' },
-    { title: 'M113', field: 'M113', type: 'numeric' },
-    { title: 'BMP-1', field: 'BMP_1', type: 'numeric' },
-    { title: 'Rocket', field: 'Rocket', type: 'numeric' },
-    { title: 'Artilley', field: 'Artilley', type: 'numeric' },
-    { title: 'light vehicle', field: 'light vehicle', type: 'numeric' },
+  const [columns, setColumns] = useState();
+  
+  useEffect(() =>{
+    axios.get('/api/InstructEmphasis/MeansOfExerciseData?collection=Types')
+      .then(result => {
+        setData(result)
+      })
+      .catch(err => console.log(err));
+  }, [])
+    
+    
+    
+    
+  //   [
+  //   {
+  //     title: 'Unit Name', field: 'unit', editable: "never",
+  //     editComponent: props => (
+  //       <input
+  //         type="text"
+  //         value={props.value}
+  //         onChange={e => props.onChange(e.target.value)}
+  //       />
+  //     )
+  //   },
+  //   { title: 'Self-propelled gun', field: 'gun', type: 'numeric' },
+  //   { title: 'M548', field: 'M548', type: 'numeric' },
+  //   { title: 'Track', field: 'Track', type: 'numeric' },
+  //   { title: 'M113', field: 'M113', type: 'numeric' },
+  //   { title: 'BMP-1', field: 'BMP_1', type: 'numeric' },
+  //   { title: 'Rocket', field: 'Rocket', type: 'numeric' },
+  //   { title: 'Artilley', field: 'Artilley', type: 'numeric' },
+  //   { title: 'light vehicle', field: 'light vehicle', type: 'numeric' },
 
-  ]);
+  // ]);
 
   const [data, setData] = useState([
     { unit: 'Artillery battery A' },

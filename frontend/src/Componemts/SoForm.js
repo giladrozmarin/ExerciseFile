@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import {TextField} from "formik-material-ui"
 import { Field,ErrorMessage } from 'formik';
-
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, mdbWavesEffect } from 'mdbreact';
+import {  MDBInput} from 'mdbreact';
 import { useFormikContext } from "formik";
-import { Card, CardContent } from '@material-ui/core'
-import * as Yup from 'yup'
+import { Card} from '@material-ui/core'
 import axios from 'axios'
-import Certifications from './Certifications'
 import DatePickerWrapper from '../Wrapper/DatePickerWrapper';
-import moment from 'moment';
-import {CustomInputComponent} from '../Validation/CustomInputComponents';
 import SignatureCanvas from 'react-signature-canvas'
-import reactSignatureCanvas from '../Wrapper/reactSignatureCanvas'
+
  
 
 const SoForm = () => {
