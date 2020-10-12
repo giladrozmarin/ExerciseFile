@@ -15,7 +15,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 :M-109A6 a :SPG ;
    :name "M-109A6" .
 
-:M-113 a :APC ;
+:M-113 a :AFV ;
    :name "M-113" .
 
 :BMP-1 a :APC ;

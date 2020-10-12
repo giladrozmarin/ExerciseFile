@@ -1,5 +1,6 @@
 const { Connection, query, db } = require('stardog');
 const path = require('path');
+const fs = require('fs');
 
 const conn = new Connection({
     username: 'admin',
@@ -18,16 +19,28 @@ function exeQuery(callback) {
 }
     
 function createDB(callback) {
-    console.log('here');
-    let options = { files: [] }
-    options.files.push = { filename: path.join(__dirname, 'ExerciseFileDB.ttl') };
-    options.files.push = { filename: path.join(__dirname, 'ExerciseFileSchema.ttl') };
+    db.create(conn, efdb, Object.assign({}, {
+        index: {
+            type: 'disk',
+        },
+    })).then((body) => {
+        const schemaData = fs.readFileSync(path.join(__dirname, "ExerciseFileSchema.ttl"), "utf8");
+        const insertSchema = `insert data { ${schemaData} }`;
 
-    db.create(conn, efdb, null, options, null).then((body) => callback(body))
+        query.execute(conn, efdb, insertSchema).then((insertSchema) => {
+            const dbData = fs.readFileSync(path.join(__dirname, "ExerciseFileDB.ttl"), "utf8");
+            const insertDB = `insert data { ${dbData} }`;
+            console.log(insertSchema);
+            query.execute(conn, efdb, insertDB).then((insertDB) => {
+                console.log(insertDB);
+                callback(body)
+            })
+        })
+    })
 }
 
 function dropDB(callback) {
-    db.create(conn, efdb, null).then((body) => callback(body))
+    db.drop(conn, efdb, {}).then((body) => callback(body))
 }
 
 module.exports = { exeQuery, createDB, dropDB }

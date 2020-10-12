@@ -17,7 +17,6 @@ class RuleEngine {
 
     updateRules(rules) {
         if (rules) {
-            console.log(rules)
             this.engine = new Engine(rules)
         } else {
             this.engine = new Engine();
