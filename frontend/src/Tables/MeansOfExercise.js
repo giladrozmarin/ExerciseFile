@@ -9,13 +9,16 @@ import { keys } from '@material-ui/core/styles/createBreakpoints';
 function MeansOfExercise(props) {
 
   function fetch(newData, oldData) {
-  //newData[exerciseType] = exerciseType
+  newData['Exercise-type'] = exerciseType
+  console.table(newData)
+
     return (
       axios.post('/api/InstructEmphasis/MeansOfExercise', newData)
         .then((response) => {
 
           const myP = new Promise((resolve, reject) => {
-            //delete newData[exerciseType]
+            console.table(newData)
+            delete newData['Exercise-type']
             if (response.data[0] == null) {
               const dataUpdate = [...data];
               const index = oldData.tableData.id;
@@ -55,7 +58,7 @@ function MeansOfExercise(props) {
   }, [])
 
 
-      console.log(columns)
+      
 
 
 

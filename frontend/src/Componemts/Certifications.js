@@ -93,8 +93,8 @@ const Certifications = () => {
                                                 }}
   >
                                                 
-                                                <MenuItem value="1" value="Open Terrain">Open Terrain</MenuItem>
-                                                <MenuItem value="Urban warfare" >Urban warfare</MenuItem>
+                                                <MenuItem value="1" value="Open-terrain">Open Terrain</MenuItem>
+                                                <MenuItem value="Urban-warfare" >Urban warfare</MenuItem>
                                                 <MenuItem value="Armoured fighting vehicle" >Armoured fighting vehicle</MenuItem>
                                                 <MenuItem value="unplanned" >unplanned</MenuItem>
                                                 <MenuItem value="live military exercise" >live military exercise</MenuItem>
