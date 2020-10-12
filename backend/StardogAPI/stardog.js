@@ -17,7 +17,7 @@ const queryString = 'select distinct ?s ?p ?o where { ?s ?p ?o }'
 function exeQuery(callback) {
     query.execute(conn, efdb, queryString, queryOption, queryParams).then((body) => callback(body));
 }
-    
+
 function createDB(callback) {
     db.create(conn, efdb, Object.assign({}, {
         index: {
