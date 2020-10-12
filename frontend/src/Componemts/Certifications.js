@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, mdbWavesEffect } from 'mdbreact';
-import { useFormik ,Field} from 'formik';
-import { Card, CardContent} from '@material-ui/core'
-import {TextField} from "formik-material-ui"
+import { useFormik, Field } from 'formik';
+import { Card, CardContent, MenuItem } from '@material-ui/core'
+import { TextField } from "formik-material-ui"
 import * as Yup from 'yup'
 import axios from 'axios'
 
@@ -16,9 +16,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-      backgroundColor: 'yellow'
+        backgroundColor: 'yellow'
     }
-  })
+})
 //now check that the value get correct to the database
 const Certifications = () => {
     //state             //Setstate
@@ -29,16 +29,16 @@ const Certifications = () => {
 
         axios.get('/api/certifications/fieldApproveOptions?userId=1234567&rank=Colonel&force=Moran')
             .then(response => {
-                
+
                 setFieldApproveOptions(response.data.fieldApproveOptions)
-               
+
             })
             .catch(err => console.log(err))
     }, [])
     console.table(fieldApproveOptions)
     const formik = useFormik({
 
-        
+
 
         onSubmit: values => {
             axios.post('/api/certifications', values)
@@ -52,7 +52,7 @@ const Certifications = () => {
     })
 
     return (
-       
+
         <Card className="bg1" >
             <CardContent >
                 <div className="Pedding">
@@ -62,55 +62,58 @@ const Certifications = () => {
                             <MDBCol md="4"  >
                                 <div className="MDBColor">
                                     <form className="form"/*onSubmit={formik.onSubmit}*/ autoComplete="off">
-                                        <p className="h1 text-center" style={{ paddingBottom:"10px", fontWeight: "bold" }}>Certifications</p>
+                                        <p className="h1 text-center" style={{ paddingBottom: "10px", fontWeight: "bold" }}>Certifications</p>
                                         <div className="Certifications">
-                         
-                                           
-                                            <MDBInput
-                                                label="Exercise name"
-                                                component ={TextField }
+
+
+                                            <Field
+                                              style = {{width: 400}}
+                                                Field="Exercise name"
+                                                component={TextField}
                                                 name={"exerciseName"}
+                                                label="Exercise name"
                                                 type="text"
-                                                outline
-                                                size="lg"
-                                            //    {...formik.getFieldProps('exerciseName')}
-                                           //     {...console.log({...formik.getFieldProps('exerciseName')})}
-                                            />
-                                          
+                                              
+                                                helperText="Please enter exercise name"
 
-                                            <MDBInput
-                                                label="Exercise type"
+                                            />
+
+                                            <Field
+                                                component={TextField}
+                                                type="text"
                                                 name="exerciseType"
-                                                list="types"
-                                                outline
-                                                size="lg"
-                                             //   {...formik.getFieldProps('exerciseType')}
+                                                label="Exercise type"
+                                                select
+                                                variant="standard"
+                                                helperText="Please select your exercise type "
+                                                margin="normal"
+                                                style = {{width: 400}}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+  >
+                                                
+                                                <MenuItem value="1" value="Open Terrain">Open Terrain</MenuItem>
+                                                <MenuItem value="Urban warfare" >Urban warfare</MenuItem>
+                                                <MenuItem value="Armoured fighting vehicle" >Armoured fighting vehicle</MenuItem>
+                                                <MenuItem value="unplanned" >unplanned</MenuItem>
+                                                <MenuItem value="live military exercise" >live military exercise</MenuItem>
+                                                
+                                            </Field>
 
-                                            />
-
-                                            <datalist id="types" >
-                                                <option data-value="1" value="Open Terrain">Open Terrain</option>
-                                                <option value="Urban warfare" >Urban warfare</option>
-                                                <option value="Armoured fighting vehicle" >Armoured fighting vehicle</option>
-                                                <option value="unplanned" >unplanned</option>
-                                                <option value="live military exercise" >live military exercise</option>
-                                            </datalist>
-
-
-
-
-
-
-                                            <MDBInput
+                              
+                                            <Field
+                                           
                                                 label="Order of battle"
+                                                component={TextField}
                                                 name="exerciseOOB"
                                                 type="number"
                                                 min="20"
-                                                outline
-                                                size="lg"
-                                           
-                                            />
+                                                style = {{width: 400}}
+                                                helperText="Please enter Order of battle "
 
+                                            />
+                          
 
 
                                             {/*FieldApprove button */}
@@ -120,7 +123,7 @@ const Certifications = () => {
                                                 list="fieldApproves"
                                                 outline
                                                 size="lg"
-                                           //     {...formik.getFieldProps('fieldApprove')}
+                                            //     {...formik.getFieldProps('fieldApprove')}
                                             />
                                             <datalist id="fieldApproves" defaultValue>
 
@@ -139,7 +142,7 @@ const Certifications = () => {
                                                 type="text"
                                                 outline
                                                 size="lg"
-                                              //  {...formik.getFieldProps('fileApprove')}
+                                            //  {...formik.getFieldProps('fileApprove')}
                                             />
                                             <MDBInput
                                                 label="artilleryApprove"
@@ -147,7 +150,7 @@ const Certifications = () => {
                                                 type="text"
                                                 outline
                                                 size="lg"
-                                              //  {...formik.getFieldProps('artilleryApprove')}
+                                            //  {...formik.getFieldProps('artilleryApprove')}
                                             />
                                             <MDBInput
                                                 label="exerciseManager"
@@ -155,10 +158,10 @@ const Certifications = () => {
                                                 type="text"
                                                 outline
                                                 size="lg"
-                                                component ={TextField}
-                                              //  {...formik.getFieldProps('exerciseManager')}
+                                                component={TextField}
+                                            //  {...formik.getFieldProps('exerciseManager')}
                                             />
-                                            
+
 
                                             <MDBInput
                                                 label="trainerOfficerApprove"
@@ -166,10 +169,10 @@ const Certifications = () => {
                                                 type="text"
                                                 outline
                                                 size="lg"
-                                              //  {...formik.getFieldProps('trainerOfficerApprove')}
+                                            //  {...formik.getFieldProps('trainerOfficerApprove')}
                                             />
 
-                                            
+
 
                                             <div style={{ fontSize: "large", fontWeight: "bold" }} className="custom-control custom-checkbox">
 
@@ -187,7 +190,7 @@ const Certifications = () => {
 
 
 
-{/** 
+                                            {/** 
                                             /*pod section
                                             <span style={{ fontSize: "large", fontWeight: "bold", float: "left" }} >part of the day:</span>
                                             <div className="forms" style={{ fontWeight: "bold" }}   {...formik.getFieldProps('exercisePOD')} >
@@ -210,7 +213,7 @@ const Certifications = () => {
                                             <div className="text-center">
                                              <MDBBtn type="submit" color="yellow">Send</MDBBtn>
                                             </div>
-                                            */}                
+                                            */}
 
 
 
@@ -225,9 +228,9 @@ const Certifications = () => {
                 </div>
             </CardContent>
         </Card>
-   
+
     );
-    
+
 
 }
 
