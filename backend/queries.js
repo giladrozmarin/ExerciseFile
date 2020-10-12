@@ -55,4 +55,17 @@ function dropCollection(collection, callback) {
 
 }
 
-module.exports = { insertOne, insertMany, dropCollection }
+function createCollection(collection, callback) {
+    MongoClient.connect(DB_PARAMS.SERVER_URL, { useUnifiedTopology: true }, function (err, db) {
+        if (err) throw err;
+        let dbo = db.db(DB_PARAMS.DB);
+
+        dbo.createCollection(collection, function (err, res) {
+            if (err) throw err;
+            console.log("Collection created!");
+            db.close();
+        })
+    })
+}
+
+module.exports = { insertOne, insertMany, createCollection, dropCollection }

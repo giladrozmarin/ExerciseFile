@@ -6,8 +6,6 @@ const fs = require('fs');
 class RuleEngine {
 
     constructor() {
-
-        //Singleton
         if (RuleEngine.instance instanceof RuleEngine)
             return RuleEngine.instance
 
@@ -17,7 +15,6 @@ class RuleEngine {
 
     updateRules(rules) {
         if (rules) {
-            console.log(rules)
             this.engine = new Engine(rules)
         } else {
             this.engine = new Engine();

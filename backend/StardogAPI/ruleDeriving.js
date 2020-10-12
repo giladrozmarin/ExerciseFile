@@ -7,10 +7,16 @@ const RuleEngine = require('../RuleEngine/engine').RuleEngine
 const queries = require('../queries');
 
 const Engine = new RuleEngine();
+let links = []
+let types = []
 
 let onFileChange = () => {
+    links = []
+    types = []
     dropDB(function (body) {
+        console.log(body);
         createDB(function (body) {
+            console.log(body);
             ruleDeriving()
         })
     })
@@ -21,14 +27,11 @@ observer.observeFile(filePath, onFileChange)
 filePath = path.join(__dirname, 'ExerciseFileSchema.ttl');
 observer.observeFile(filePath, onFileChange)
 
-const links = []
-const types = []
-
 function ruleDeriving() {
     getLinks(() => {
         rules = buildRules()
 
-        var rulesPath = path.join(__dirname, '..', '..', 'rules', 'json-rules.json');
+        let rulesPath = path.join(__dirname, '..', '..', 'rules', 'json-rules.json');
         // write rules to file
         writeToFile(rulesPath, rules)
         typesToMongo()
@@ -130,15 +133,17 @@ function readFromFile(path) {
     return jsonArr;
 }
 
+
 function typesToMongo() {
+    console.log('typesToMongo')
     console.log(types)
     queries.dropCollection('Types', function (isExist) {
-        if (isExist) {
-            queries.insertMany(types, 'Types', function (dbRes) {
-                console.log('insert many succeeded');
-            })
-        } else
-            console.log('collection not exist');
+        if (!isExist) {
+            queries.createCollection('Types', function (body) { })
+        }
+        queries.insertMany(types, 'Types', function (dbRes) {
+            console.log('insert many succeeded');
+        })
     })
 }
 

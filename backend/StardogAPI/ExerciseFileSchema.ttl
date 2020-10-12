@@ -7,6 +7,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:label "Terrain" ;
    rdfs:comment "A Terrain." .
        
+:Exercise-type a rdfs:Class ;
+   rdfs:label "Exercise Type" ;
+   rdfs:comment "An ExerciseType." .
+       
 :Ammunition a rdfs:Class ;
    rdfs:label "TransportVehicle" ;
    rdfs:comment "A Transport Vehicle." .
@@ -40,14 +44,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:comment "An Armoured transport vehicle; type of AFV." ;
    rdfs:subClassOf :AFV .
 
-:APC a rdfs:Class ;
-   rdfs:label "APC" ;
-   rdfs:comment "An Armoured transport vehicle; type of AFV." ;
-   rdfs:subClassOf :AFV .
-
 :cantUse a rdfs:Property ;
-   rdfs:label "Cant Use APC in terrain" ;
-   rdfs:comment "An Armoured transport vehicle; type of AFV." .
+   rdfs:label "Cant Use link" ;
+   rdfs:comment "Cant use b in a" .
 
 :Truck a rdfs:Class ;
    rdfs:label "Truck" ;
@@ -58,10 +57,3 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:label "name" ;
    rdfs:comment "The name of an entity." ;
    rdfs:range xsd:string .
-
-:seats a rdf:Property ;
-   rdfs:label "seats" ;
-   rdfs:comment "Number of seats in a vehicle" ;
-   rdfs:domain :TransportVehicle ;
-   rdfs:range :xsd:integer .
-

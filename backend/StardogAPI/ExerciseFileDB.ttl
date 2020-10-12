@@ -3,8 +3,25 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-:Urban-warfare a :Terrain;
+:Urban-warfare a :Exercise-type ;
    :cantuse :APC .
+       
+:Open-terrain a :Exercise-type .
+       
+:Area100 a :Terrain ;
+   :name "Area 100" .
+
+:Area150 a :Terrain ;
+   :name "Area 150" .
+
+:Area1 a :Terrain ;
+   :name "Area 1" .
+
+:Area2 a :Terrain ;
+   :name "Area 2" .
+
+:Area3 a :Terrain ;
+   :name "Area 3" .
        
 :Hummer a :AFV ;
    :name "Hummer" .
@@ -17,6 +34,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 :M-113 a :APC ;
    :name "M-113" .
+
+:M-114 a :APC ;
+   :name "M-114" .
 
 :BMP-1 a :APC ;
    :name "BMP-1" .
@@ -32,4 +52,3 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 :Rocket-109 a :Rocket ;
    :name "Rocket-109" .
-

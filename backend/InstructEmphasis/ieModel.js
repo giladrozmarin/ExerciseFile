@@ -12,23 +12,23 @@ function MeansOfExercise(req, res) {
     });
 }
 
-function MeansOfExerciseData (req, res ){
+function MeansOfExerciseData(req, res) {
 
-    let table1Query ='{$or:[{"o":"APC"},{"o":"Truck"},{"o":"Rocket"},{"o":"Artillery"},{"o":"SPG"}]},{s:1}'
+    let table1Query = '{$or:[{"o":"APC"},{"o":"Truck"},{"o":"Rocket"},{"o":"Artillery"},{"o":"SPG"}]},{s:1}'
 
-   // db.Types.find({$or:[{"o":"APC"},{"o":"Truck"},{"o":"Rocket"},{"o":"Artillery"},{"o":"SPG"}]},{s:1})
+    // db.Types.find({$or:[{"o":"APC"},{"o":"Truck"},{"o":"Rocket"},{"o":"Artillery"},{"o":"SPG"}]},{s:1})
 
     dal.find(table1Query, function (dbRes) {
-         
-       
-      
 
-        dbRes.map((trio, i) => dbRes[i] = {field: trio.s, title:trio.s, type: 'numeric'})
-        
+
+
+
+        dbRes.map((trio, i) => dbRes[i] = { field: trio.s, title: trio.s, type: 'numeric' })
+
         console.table(dbRes);
         res.send({ MeansOfExerciseData: dbRes });
 
     })
-    }
+}
 
-module.exports = { MeansOfExercise,MeansOfExerciseData }
+module.exports = { MeansOfExercise, MeansOfExerciseData }
