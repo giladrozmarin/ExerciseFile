@@ -7,6 +7,16 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:label "Terrain" ;
    rdfs:comment "A Terrain." .
        
+:Open-terrain a rdfs:Class ;
+   rdfs:label "Open terrain" ;
+   rdfs:comment "; type of transport ammunition." ;
+   rdfs:subClassOf :Terrain .
+
+:Closed-terrain a rdfs:Class ;
+   rdfs:label "Closed terrain" ;
+   rdfs:comment "; type of transport ammunition." ;
+   rdfs:subClassOf :Terrain .
+       
 :Exercise-type a rdfs:Class ;
    rdfs:label "Exercise Type" ;
    rdfs:comment "An ExerciseType." .

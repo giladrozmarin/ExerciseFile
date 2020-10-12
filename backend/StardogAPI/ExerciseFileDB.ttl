@@ -5,24 +5,30 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 :Urban-warfare a :Exercise-type ;
    :cantuse :APC .
-       
+
 :Open-terrain a :Exercise-type .
        
-:Area100 a :Terrain ;
+:Area100 a :Open-terrain ;
    :name "Area 100" .
 
-:Area150 a :Terrain ;
+:Area150 a :Open-terrain ;
    :name "Area 150" .
 
-:Area1 a :Terrain ;
+:Area200 a :Open-terrain ;
+   :name "Area 200" .
+
+:Area1 a :Closed-terrain ;
    :name "Area 1" .
 
-:Area2 a :Terrain ;
+:Area2 a :Closed-terrain ;
    :name "Area 2" .
 
-:Area3 a :Terrain ;
+:Area3 a :Closed-terrain ;
    :name "Area 3" .
-       
+
+:AreaCNO a :Open-terrain, :Closed-terrain ;
+   :name "Area CNO" .
+
 :Hummer a :AFV ;
    :name "Hummer" .
 
