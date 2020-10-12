@@ -13,16 +13,10 @@ const queryParams = { reasoning: true }
 const queryString = 'select distinct ?s ?p ?o where { ?s ?p ?o }'
 
 
-<<<<<<< HEAD
-function exequery(callback) {
-    query.execute(conn, db, queryString, queryOption, queryParams).then((body) => callback(body));
-
-=======
 function exeQuery(callback) {
     query.execute(conn, efdb, queryString, queryOption, queryParams).then((body) => callback(body));
->>>>>>> f88ac03700d5b48803314074983edf29a31d1a47
 }
-
+    
 function createDB(callback) {
     console.log('here');
     let options = { files: [] }

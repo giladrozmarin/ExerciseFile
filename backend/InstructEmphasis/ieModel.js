@@ -20,8 +20,13 @@ function MeansOfExerciseData (req, res ){
 
     dal.find(table1Query, function (dbRes) {
          
-        console.log(dbRes);
-        res.send({ MeansOfExerciseData: dbRes, cerRes: 'data table successfully' });
+       
+      
+
+        dbRes.map((trio, i) => dbRes[i] = {field: trio.s, title:trio.s, type: 'numeric'})
+        
+        console.table(dbRes);
+        res.send({ MeansOfExerciseData: dbRes });
 
     })
     }

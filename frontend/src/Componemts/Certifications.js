@@ -29,12 +29,13 @@ const Certifications = () => {
 
         axios.get('/api/certifications/fieldApproveOptions?userId=1234567&rank=Colonel&force=Moran')
             .then(response => {
-                console.log(response.data)
+                
                 setFieldApproveOptions(response.data.fieldApproveOptions)
+               
             })
             .catch(err => console.log(err))
     }, [])
-  
+    console.table(fieldApproveOptions)
     const formik = useFormik({
 
         
@@ -207,10 +208,9 @@ const Certifications = () => {
                                             </div>
 
                                             <div className="text-center">
-                                             {/}<MDBBtn type="submit" color="yellow">Send</MDBBtn>
+                                             <MDBBtn type="submit" color="yellow">Send</MDBBtn>
                                             </div>
                                             */}                
-
 
 
 

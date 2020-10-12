@@ -16,7 +16,7 @@ class Weather extends React.Component{
         e.preventDefault();
         const city = e.target.elements.city.value;
         const country = e.target.elements.country.value;
-        const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
+        const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IL &appid=${API_KEY}&units=metric`)
         const data = await api_call.json();
  
             this.setState({
@@ -31,12 +31,13 @@ class Weather extends React.Component{
     }
     render(){
    return(
-        <form onSubmit={this.getWeather}>
-		<input type="text" name="city" placeholder="City..."/>
-		<input type="text" name="country" placeholder="Country..."/>
+       <>
+       {/* // <form onSubmit={this.getWeather}>
+		//<input type="text" name="city" placeholder="City..."/>
+	//	<input type="text" name="country" placeholder="Country..."/> */}
         <p>the current temperature : {this.state.temperature}</p>
 		<button > Get Weather</button>
-	</form>
+	</>
    )
     }
 }

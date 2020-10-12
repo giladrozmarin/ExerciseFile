@@ -45,17 +45,22 @@ function MeansOfExercise(props) {
   useEffect(() =>{
     axios.get('/api/InstructEmphasis/MeansOfExerciseData')
     .then(response => {
-      console.log(response.data.MeansOfExerciseData)
+     
         setColumns(response.data.MeansOfExerciseData)
-        console.table(setColumns)
+        
       })
       .catch(err => console.log(err));
   }, [])
-    
-    
+
+
+      console.log(columns)
+
+
+
+  //columnscolumns.map(column => {column.title=column.s});
+   //     
   
-    
-  //   [
+        //   [
   //   {
   //     title: 'Unit Name', field: 'unit', editable: "never",
   //     editComponent: props => (
@@ -90,7 +95,7 @@ function MeansOfExercise(props) {
 
       <MaterialTable
         title="Means Of Exercise"
-        columns={columns}
+       columns={columns}
         data={data}
         editable={{
           onRowAdd: newData =>
