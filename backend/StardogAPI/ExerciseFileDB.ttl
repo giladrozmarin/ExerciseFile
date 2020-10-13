@@ -5,6 +5,9 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 :Urban-warfare a :Exercise-type ;
    :cantuse :APC .
+       
+:Temperature a :Temperature ;
+   :heatload1 :Open-terrain .
 
 :Open-terrain a :Exercise-type .
        

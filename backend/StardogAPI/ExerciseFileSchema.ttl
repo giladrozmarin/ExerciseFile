@@ -7,6 +7,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:label "Terrain" ;
    rdfs:comment "A Terrain." .
        
+:Temperature a rdfs:Class ;
+   rdfs:label "Temperature" ;
+   rdfs:comment "A Temperature." .
+
 :Open-terrain a rdfs:Class ;
    rdfs:label "Open terrain" ;
    rdfs:comment "; type of transport ammunition." ;
@@ -54,10 +58,6 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:comment "An Armoured transport vehicle; type of AFV." ;
    rdfs:subClassOf :AFV .
 
-:cantUse a rdfs:Property ;
-   rdfs:label "Cant Use link" ;
-   rdfs:comment "Cant use b in a" .
-
 :Truck a rdfs:Class ;
    rdfs:label "Truck" ;
    rdfs:comment "A truck; type of transport vehicle." ;
@@ -67,3 +67,11 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
    rdfs:label "name" ;
    rdfs:comment "The name of an entity." ;
    rdfs:range xsd:string .
+
+:cantUse a rdfs:Property ;
+   rdfs:label "Cant Use link" ;
+   rdfs:comment "Cant use b in a" .
+
+:heatLoad1 a rdfs:Property ;
+   rdfs:label "Heat Load level 1 link" ;
+   rdfs:comment "Temperature is too hot" .

@@ -1,8 +1,11 @@
 const rdfVoc = ['comment', 'label']
 
-const linksVoc = ['cantuse', 'max']
+const linksVoc = ['cantuse', 'heatload1']
 
-const operatorDic = { "cantuse": { operator: 'greaterThan', value: 0, message: 'cant use' } }
+const operatorDic = {
+    "cantuse": { operator: 'greaterThan', value: 0, message: 'cant use' },
+    "heatload1": { operator: 'greaterThan', value: 29, message: 'is too high in' }
+}
 //  [ { p: 'cantuse', s: 'Urban-warfare', o: 'APC' } ]
 
 // { p: 'type', s: 'M-113', o: 'APC' },

@@ -136,7 +136,8 @@ function readFromFile(path) {
 
 function typesToMongo() {
     console.log('typesToMongo')
-    console.log(types)
+    console.table(links)
+    console.table(types)
     queries.dropCollection('Types', function (isExist) {
         if (!isExist) {
             queries.createCollection('Types', function (body) { })
