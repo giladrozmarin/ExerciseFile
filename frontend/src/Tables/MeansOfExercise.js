@@ -9,8 +9,10 @@ import { keys } from '@material-ui/core/styles/createBreakpoints';
 function MeansOfExercise(props) {
 
   function fetch(newData, oldData) {
-  newData['Exercise-type'] = exerciseType
-  console.table(newData)
+
+    //get data => check in ruleEngine => return rules
+    newData['Exercise-type'] = exerciseType
+    console.table(newData)
 
     return (
       axios.post('/api/InstructEmphasis/MeansOfExercise', newData)
@@ -42,50 +44,46 @@ function MeansOfExercise(props) {
         ))
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const { values } = useFormikContext()
   const { exerciseType } = values
   let errors = "check"
-  const [columns, setColumns] = useState();
+  const [columns, setColumns] = useState( 
+    []);
 
   useEffect(() =>{
     axios.get('/api/InstructEmphasis/MeansOfExerciseData')
     .then(response => {
+      response.data.MeansOfExerciseData.unshift({title: 'Unit Name', field: 'unit', editable: "never"})
+        setColumns(
+          
+          response.data.MeansOfExerciseData
      
-        setColumns(response.data.MeansOfExerciseData)
-        
+          )
+       
       })
       .catch(err => console.log(err));
   }, [])
-
-
-      
-
-
-
-  //columnscolumns.map(column => {column.title=column.s});
-   //     
-  
-        //   [
-  //   {
-  //     title: 'Unit Name', field: 'unit', editable: "never",
-  //     editComponent: props => (
-  //       <input
-  //         type="text"
-  //         value={props.value}
-  //         onChange={e => props.onChange(e.target.value)}
-  //       />
-  //     )
-  //   },
-  //   { title: 'Self-propelled gun', field: 'gun', type: 'numeric' },
-  //   { title: 'M548', field: 'M548', type: 'numeric' },
-  //   { title: 'Track', field: 'Track', type: 'numeric' },
-  //   { title: 'M113', field: 'M113', type: 'numeric' },
-  //   { title: 'BMP-1', field: 'BMP_1', type: 'numeric' },
-  //   { title: 'Rocket', field: 'Rocket', type: 'numeric' },
-  //   { title: 'Artilley', field: 'Artilley', type: 'numeric' },
-  //   { title: 'light vehicle', field: 'light vehicle', type: 'numeric' },
-
-  // ]);
 
   const [data, setData] = useState([
     { unit: 'Artillery battery A' },
@@ -94,13 +92,14 @@ function MeansOfExercise(props) {
     { unit: 'Artillery battery D' }
   ]);
 
+
   return (
     <>
         
 
       <MaterialTable
         title="Means Of Exercise"
-       columns={columns}
+        columns={columns}
         data={data}
         editable={{
           onRowAdd: newData =>

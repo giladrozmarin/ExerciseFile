@@ -14,11 +14,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 
-const useStyles = makeStyles({
-    root: {
-        backgroundColor: 'yellow'
-    }
-})
 //now check that the value get correct to the database
 const Certifications = () => {
     //state             //Setstate
@@ -93,7 +88,7 @@ const Certifications = () => {
                                                 }}
   >
                                                 
-                                                <MenuItem value="1" value="Open-terrain">Open Terrain</MenuItem>
+                                                <MenuItem value="Open-terrain">Open Terrain</MenuItem>
                                                 <MenuItem value="Urban-warfare" >Urban warfare</MenuItem>
                                                 <MenuItem value="Armoured fighting vehicle" >Armoured fighting vehicle</MenuItem>
                                                 <MenuItem value="unplanned" >unplanned</MenuItem>

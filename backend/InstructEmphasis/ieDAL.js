@@ -31,4 +31,40 @@ function find(query, callback) {
         });
     });
 }
-module.exports = { CheckRules ,find}
+function find1(query, callback) {
+    var retval;
+
+    MongoClient.connect(DB_PARAMS.SERVER_URL, { useUnifiedTopology: true }, function (err, db) {
+        if (err)
+            throw err;
+
+        let dbo = db.db(DB_PARAMS.DB);
+        
+        dbo.collection(DB_PARAMS.TYPE).find({"o":"Open-terrain"},{s:1}).toArray(function (err, dbRes) {
+            if (err)
+                throw err;
+
+            callback(dbRes);
+            db.close();
+        });
+    });
+}
+function find2(query, callback) {
+    var retval;
+
+    MongoClient.connect(DB_PARAMS.SERVER_URL, { useUnifiedTopology: true }, function (err, db) {
+        if (err)
+            throw err;
+
+        let dbo = db.db(DB_PARAMS.DB);
+
+        dbo.collection(DB_PARAMS.TYPE).find({"o":"Closed-terrain"},{s:1}).toArray(function (err, dbRes) {
+            if (err)
+                throw err;
+
+            callback(dbRes);
+            db.close();
+        });
+    });
+}
+module.exports = { CheckRules ,find,find1,find2}
