@@ -52,9 +52,9 @@ export default function FireAreas(props) {
           .then((response) => {
             delete data['Exercise-type']
             console.table(response.data)
-          
-            alert(response.data)
-
+          if(response.data[0]){
+            alert(response.data[0])
+          }
 
           },
          )

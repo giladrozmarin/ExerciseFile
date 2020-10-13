@@ -2,7 +2,7 @@ const DB = require('../db');
 const dal = require('./ieDAL');
 const API_KEY = "caba7178c08ce271766df16583a1b4e8"
 const fetch = require('node-fetch')
-
+let fact2={}
 async function getWeather(city,API_KEY){
     try {
     const api_call =  await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IL&appid=caba7178c08ce271766df16583a1b4e8&units=metric`)
@@ -18,25 +18,42 @@ async function getWeather(city,API_KEY){
         console.log('fetch failed', err);
       }
   }
+
+  
 function MeansOfExercise(req, res) {
     //{unit: "Artillery battery A", gun: 1, M548: 2, Track: 3, M113: 4,BMP-1: 5, Rocket: 6,Artilley: 7 ,light vehicle: 8}
-    let facts = req.body
-   console.table(facts)
-
-    dal.CheckRules(facts, function (engineRes) {
+    fact2 = req.body
+    fact2['Temperature']=''
+    fact2['Area100']=''
+    fact2['Area150']=''
+    fact2['Area200']=''
+    fact2['Area1']=''
+    fact2['Area2']=''
+    fact2['Area3']=''
+    fact2['AreaCNO']=''
+   console.table(fact2)
+    
+    dal.CheckRules(fact2, function (engineRes) {
         console.log(engineRes);
         res.send(engineRes);
     });
+    //
+   
 }
 
 function FireArea(req, res) {
     //{unit: "Artillery battery A", gun: 1, M548: 2, Track: 3, M113: 4,BMP-1: 5, Rocket: 6,Artilley: 7 ,light vehicle: 8}
     let facts = req.body
     //area1: 23  Exercise-type: open terrain 
-    newFacts={[facts[0].unit]:facts[0].Weather,'Exercise-type':facts[1]['Exercise-type']}
-   console.table(newFacts)
-
-    dal.CheckRules(newFacts, function (engineRes) {
+    newFacts={[facts[0].unit]:facts[0].Weather,"Temperature":"Temperature"}
+    
+    for (const property in fact2)
+    {fact2[property]=''}
+     
+     fact2["Temperature"]="Temperature"
+     fact2[[facts[0].unit]]=facts[0].Weather
+     console.table(fact2)
+    dal.CheckRules(fact2, function (engineRes) {
         console.log(engineRes);
         res.send(engineRes);
     });
